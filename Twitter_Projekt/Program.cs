@@ -11,26 +11,40 @@ namespace Twitter_Projekt
         public static List<string> listOfUser = new List<string>();
         public static string username;
         public static string password;
+        public static int loginChooise;
         public static void Main(string[] args)
         {
-
-            Console.WriteLine("1: Skapa ett konto");
-            Console.WriteLine("2: Logga in");
-            int loginChooise = int.Parse(Console.ReadLine());
-
-            if (loginChooise == 1)
+            bool isRunnning = true;
+            while (isRunnning)
             {
-                createaccoount();
-            }
-            else if (loginChooise == 2) 
-            {
-                Login();
-            }
-            else
-            {
-                Console.WriteLine("Vänligen ange ett giltigt val!");
-            }
+                Console.WriteLine("1: Skapa ett konto");
+                Console.WriteLine("2: Logga in");
+                
 
+                try
+                {
+                    loginChooise = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Det måste vare en siffra");
+                }
+
+                if (loginChooise == 1)
+                {
+                    Createaccoount();
+                    isRunnning = false;
+                }
+                else if (loginChooise == 2)
+                {
+                    Login();
+                    isRunnning = false;
+                }
+                else
+                {
+                    Console.WriteLine("Vänligen ange ett giltigt val!");
+                }
+            }
             while (true)
             {
                 Console.Clear();
