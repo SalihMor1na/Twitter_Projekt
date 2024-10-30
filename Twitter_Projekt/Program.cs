@@ -12,15 +12,18 @@ namespace Twitter_Projekt
 
             while (true)
             {
+                Console.Clear();
+                Console.WriteLine();
                 Console.WriteLine("Välj ett av följande alternativ");
                 Console.WriteLine("1: Skapa ett inlägg");
                 Console.WriteLine("2: Visa alla tweets");
                 Console.WriteLine("3: Ta bort tweet");
                 Console.WriteLine("4: Skapa konto");
                 Console.WriteLine("5: Logga in");
+                Console.WriteLine();
 
                 int chooise = int.Parse(Console.ReadLine());
-
+                
                 switch (chooise)
                 {
                     case 1:
@@ -35,18 +38,24 @@ namespace Twitter_Projekt
                         break;
                 }
 
-               
+                Console.ReadKey();
             }
+
+
+
+          
         }
 
         public static void ShowAllPost()
         {
+            Console.WriteLine();
             Console.WriteLine("Här kommer alla inlägg");
             int i = 1;
             foreach (string post in listofposts)
             {
-                Console.WriteLine($"{i}.{ post}");
+                Console.WriteLine($"{i}.{post}");
                 i++;
+
             }
         }
         public static void CreatePost()
@@ -54,7 +63,8 @@ namespace Twitter_Projekt
             Console.WriteLine("Vad vill du dela med dig utav?");
             string post = Console.ReadLine();
             listofposts.Add(post);
-    
+
+
         }
 
         //public static void CreateAccoount()
