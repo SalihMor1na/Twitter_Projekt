@@ -1,14 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Twitter_Projekt
 {
     class Program
     {
         public static List<string> listofposts = new List<string>();
-
+        public static List<string> listOfUser = new List<string>();
+        public static string username;
+        public static string password;
         public static void Main(string[] args)
         {
+
+            Console.WriteLine("1: Skapa ett konto");
+            Console.WriteLine("2: Logga in");
+            int loginChooise = int.Parse(Console.ReadLine());
+
+            if (loginChooise == 1)
+            {
+                createaccoount();
+            }
+            else if (loginChooise == 2) 
+            {
+                Login();
+            }
+            else
+            {
+                Console.WriteLine("Vänligen ange ett giltigt val!");
+            }
 
             while (true)
             {
@@ -18,8 +39,6 @@ namespace Twitter_Projekt
                 Console.WriteLine("1: Skapa ett inlägg");
                 Console.WriteLine("2: Visa alla tweets");
                 Console.WriteLine("3: Ta bort tweet");
-                Console.WriteLine("4: Skapa konto");
-                Console.WriteLine("5: Logga in");
                 Console.WriteLine();
 
                 int chooise = int.Parse(Console.ReadLine());
@@ -67,15 +86,22 @@ namespace Twitter_Projekt
 
         }
 
-        //public static void CreateAccoount()
-        //{
-        //    Console.Write("Vänligen ange ditt användernamn: ");
-        //    string userName = Console.ReadLine();
+        public static void Createaccoount()
+        {
+            Console.Write("vänligen ange ditt användernamn: ");
+            username = Console.ReadLine();
+            listOfUser.Add(username);
 
-        //    Console.Write("Vänligen ange ditt lösenord: ");
-        //    string passWord = Console.ReadLine();
-        //}
+            Console.Write("vänligen ange ditt lösenord: ");
+            password = Console.ReadLine();          
 
+        }
+
+        public static void Login()
+        {
+           
+            
+        }
         public static void DeleteTweet()
         {
             Console.WriteLine("Skriv vilket inlägg du vill ta bort");
