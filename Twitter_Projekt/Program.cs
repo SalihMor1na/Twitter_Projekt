@@ -1,27 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using static System.Net.Mime.MediaTypeNames;
-
 
 namespace Twitter_Projekt
 {
     class Program
     {
+        public static List<string> listofposts = new List<string>();
 
-        
-        // 1 Skapa en inmatningsruta för tweets
-
-        //2. Skapa en lista för att visa tweets
-
-        //3. Spara och ladda tweets
-
-        //4. Enkel användarhantering
-
-        //5. Skapa konto/login
-
-        //6. Testa att posta och visa tweets
-        public void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Välj ett av följande alternativ");
             Console.WriteLine("1: Skapa ett inlägg");
@@ -30,9 +16,33 @@ namespace Twitter_Projekt
             Console.WriteLine("4: Skapa konto");
             Console.WriteLine("5: Logga in");
 
+            int chooise = int.Parse(Console.ReadLine());
 
+            switch (chooise)
+            {
+                case 1:
+                    CreatePost();
+                    break;
+                case 2:
+                    ShowAllPost();
+                    break;
+            }
+        }
 
+        public static void ShowAllPost()
+        {
+            Console.WriteLine("Här kommer alla inlägg");
+            foreach (string post in listofposts)
+            {
+                Console.WriteLine(post);
+            }
+        }
 
+        private static void CreatePost()
+        {
+            Console.WriteLine("Vad vill du dela med dig utav?");
+            string post = Console.ReadLine();
+            listofposts.Add(post);
         }
     }
 }
