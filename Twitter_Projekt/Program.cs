@@ -6,6 +6,8 @@ using System.Threading;
 
 namespace Twitter_Projekt
 {
+
+
     class Program
     {
         public static List<string> listofposts = new List<string>();
@@ -13,7 +15,7 @@ namespace Twitter_Projekt
         public static string username;
         public static string password;
         public static int loginChooise;
-
+        
        
         public static string loggedInUsername;
 
@@ -175,8 +177,3 @@ namespace Twitter_Projekt
     }
 }
 
-public class User
-{
-    public string Username { get; set; }
-    public string Password { get; set; }
-}
