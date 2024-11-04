@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Threading;
 
 namespace Twitter_Projekt
 {
@@ -40,6 +41,8 @@ namespace Twitter_Projekt
                 {
                    if (Login())
                     {
+                        Console.WriteLine($"Välkommen!");
+                        Thread.Sleep(2000);
                         isRunnning = false;
                     }
                 }
