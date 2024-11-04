@@ -14,6 +14,9 @@ namespace Twitter_Projekt
         public static string password;
         public static int loginChooise;
 
+       
+        public static string loggedInUsername;
+
         public static void Main(string[] args)
         {
             LoadUsers();
@@ -22,7 +25,6 @@ namespace Twitter_Projekt
             {
                 Console.WriteLine("1: Skapa ett konto");
                 Console.WriteLine("2: Logga in");
-                
 
                 try
                 {
@@ -30,7 +32,7 @@ namespace Twitter_Projekt
                 }
                 catch
                 {
-                    Console.WriteLine("Det måste vare en siffra");
+                    Console.WriteLine("Det måste vara en siffra");
                 }
 
                 if (loginChooise == 1)
@@ -39,9 +41,9 @@ namespace Twitter_Projekt
                 }
                 else if (loginChooise == 2)
                 {
-                   if (Login())
+                    if (Login())
                     {
-                        Console.WriteLine($"Välkommen!");
+                        Console.WriteLine($"Välkommen, {loggedInUsername}!");
                         Thread.Sleep(2000);
                         isRunnning = false;
                     }
@@ -51,6 +53,7 @@ namespace Twitter_Projekt
                     Console.WriteLine("Vänligen ange ett giltigt val!");
                 }
             }
+
             while (true)
             {
                 Console.Clear();
@@ -62,7 +65,7 @@ namespace Twitter_Projekt
                 Console.WriteLine();
 
                 int chooise = int.Parse(Console.ReadLine());
-                
+
                 switch (chooise)
                 {
                     case 1:
@@ -71,7 +74,6 @@ namespace Twitter_Projekt
                     case 2:
                         ShowAllPost();
                         break;
-
                     case 3:
                         DeleteTweet();
                         break;
@@ -79,10 +81,6 @@ namespace Twitter_Projekt
 
                 Console.ReadKey();
             }
-
-
-
-          
         }
 
         public static void ShowAllPost()
@@ -94,28 +92,24 @@ namespace Twitter_Projekt
             {
                 Console.WriteLine($"{i}.{post}");
                 i++;
-
             }
         }
+
         public static void CreatePost()
         {
             Console.WriteLine("Vad vill du dela med dig utav?");
             string post = Console.ReadLine();
             listofposts.Add(post);
-
-
         }
 
         public static void Createaccoount()
         {
-
             Console.Write("Ange ett användarnamn: ");
             string username = Console.ReadLine();
 
             Console.Write("Ange ett lösenord: ");
             string password = Console.ReadLine();
 
-            // Kontrollera om användarnamnet redan finns
             foreach (User user in users)
             {
                 if (user.Username == username)
@@ -125,16 +119,11 @@ namespace Twitter_Projekt
                 }
             }
 
-            // Skapa ny användare och lägg till i listan
             User newUser = new User { Username = username, Password = password };
             users.Add(newUser);
 
-            // Spara användare till JSON-fil
             SaveUsers();
             Console.WriteLine("Konto skapat!");
-
-
-
         }
 
         public static bool Login()
@@ -145,19 +134,18 @@ namespace Twitter_Projekt
             Console.Write("Ange ditt lösenord: ");
             string password = Console.ReadLine();
 
-            // Kontrollera om användaren finns och lösenordet är korrekt
             foreach (User user in users)
             {
                 if (user.Username == username && user.Password == password)
                 {
-                    Console.WriteLine("Inloggning lyckades! Välkommen, " + username);
+                    loggedInUsername = username; 
+                    Console.WriteLine("Inloggning lyckades!");
                     return true;
                 }
             }
 
             Console.WriteLine("Fel användarnamn eller lösenord.");
             return false;
-
         }
 
         public static void SaveUsers()
@@ -176,14 +164,13 @@ namespace Twitter_Projekt
             return new List<User>();
         }
 
-
         public static void DeleteTweet()
         {
             Console.WriteLine("Skriv vilket inlägg du vill ta bort");
             ShowAllPost();
             int removePost = int.Parse(Console.ReadLine());
             listofposts.RemoveAt(removePost - 1);
-            Console.WriteLine($"Du tog bort {removePost}");
+            Console.WriteLine($"Du tog bort inlägg nummer {removePost}");
         }
     }
 }
