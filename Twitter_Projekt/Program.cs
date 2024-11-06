@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 using System.Threading;
+
 
 namespace Twitter_Projekt
 {
@@ -15,8 +18,8 @@ namespace Twitter_Projekt
         public static string username;
         public static string password;
         public static int loginChooise;
-        
-       
+
+
         public static string loggedInUsername;
 
         public static void Main(string[] args)
@@ -64,6 +67,9 @@ namespace Twitter_Projekt
                 Console.WriteLine("1: Skapa ett inlägg");
                 Console.WriteLine("2: Visa alla tweets");
                 Console.WriteLine("3: Ta bort tweet");
+                Console.WriteLine("4: Sök efter följare");
+                Console.WriteLine("5: Retweeta");
+                Console.WriteLine("6: Skicka DM");
                 Console.WriteLine();
 
                 int chooise = int.Parse(Console.ReadLine());
@@ -95,17 +101,15 @@ namespace Twitter_Projekt
             }
             else
             {
-            Console.WriteLine("Här kommer alla inlägg");
-            int i = 1;
+                Console.WriteLine("Här kommer alla inlägg");
+                int i = 1;
                 foreach (string post in listofposts)
                 {
 
                     Console.WriteLine($"{i}.{post}");
                     i++;
                 }
-
             }
-
         }
 
         public static void CreatePost()
@@ -151,7 +155,7 @@ namespace Twitter_Projekt
             {
                 if (user.Username == username && user.Password == password)
                 {
-                    loggedInUsername = username; 
+                    loggedInUsername = username;
                     Console.WriteLine("Inloggning lyckades!");
                     return true;
                 }
@@ -184,6 +188,11 @@ namespace Twitter_Projekt
             int removePost = int.Parse(Console.ReadLine());
             listofposts.RemoveAt(removePost - 1);
             Console.WriteLine($"Du tog bort inlägg nummer {removePost}");
+        }
+
+        public static void SearchForUSer()
+        {
+            
         }
     }
 }
