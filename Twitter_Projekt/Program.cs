@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -85,6 +86,10 @@ namespace Twitter_Projekt
                     case 3:
                         DeleteTweet();
                         break;
+                    case 4:
+                        SearchForUSer();
+                        break;
+
                 }
 
                 Console.ReadKey();
@@ -192,7 +197,21 @@ namespace Twitter_Projekt
 
         public static void SearchForUSer()
         {
-            
+            Console.Write("Ange användarnamnet på personen du vill söka efter: ");
+            string search = Console.ReadLine();
+
+            User foundUser = users.FirstOrDefault(user => user.Username.Equals(search, StringComparison.OrdinalIgnoreCase));
+
+            if (foundUser != null)
+            {
+                Console.WriteLine($"Användaren '{search}' finns i systemet.");
+            }
+            else
+            {
+                Console.WriteLine($"Användaren '{search}' finns inte i systemet.");
+            }
+
+
         }
     }
 }
