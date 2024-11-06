@@ -88,13 +88,24 @@ namespace Twitter_Projekt
         public static void ShowAllPost()
         {
             Console.WriteLine();
+
+            if (listofposts.Count == 0)
+            {
+                Console.WriteLine("Du har inga inlägg att visa!");
+            }
+            else
+            {
             Console.WriteLine("Här kommer alla inlägg");
             int i = 1;
-            foreach (string post in listofposts)
-            {
-                Console.WriteLine($"{i}.{post}");
-                i++;
+                foreach (string post in listofposts)
+                {
+
+                    Console.WriteLine($"{i}.{post}");
+                    i++;
+                }
+
             }
+
         }
 
         public static void CreatePost()
