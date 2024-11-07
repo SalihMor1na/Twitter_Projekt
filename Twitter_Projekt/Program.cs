@@ -16,8 +16,6 @@ namespace Twitter_Projekt
     {
         public static List<string> listofposts = new List<string>();
         public static List<User> users = LoadUsers();
-        public static string username;
-        public static string password;
         public static int loginChooise;
 
 
