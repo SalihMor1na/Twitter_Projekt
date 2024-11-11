@@ -17,7 +17,7 @@ namespace Twitter_Projekt
         public static List<string> listofposts = new List<string>();
         public static List<User> users = LoadUsers();
         public static int loginChooise;
-
+        public static int repostChoice;
 
         public static string loggedInUsername;
 
@@ -86,6 +86,9 @@ namespace Twitter_Projekt
                         break;
                     case 4:
                         SearchForUSer();
+                        break;
+                    case 5:
+                        Reposta();
                         break;
 
                 }
@@ -191,6 +194,16 @@ namespace Twitter_Projekt
             int removePost = int.Parse(Console.ReadLine());
             listofposts.RemoveAt(removePost - 1);
             Console.WriteLine($"Du tog bort inlägg nummer {removePost}");
+        }
+
+        public static void Reposta()
+        {
+            Console.WriteLine("Vilket inlägg vill du reposta");
+            ShowAllPost();
+            repostChoice = int.Parse(Console.ReadLine()) -1;
+
+            Console.WriteLine($"Du har nu repostat {listofposts[repostChoice]}");
+
         }
 
         public static void SearchForUSer()
