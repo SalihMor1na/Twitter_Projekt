@@ -102,6 +102,15 @@ namespace Twitter_Projekt
             }
         }
 
+        // Alternativ 1
+        public static void CreatePost()
+        {
+            Console.WriteLine("Vad vill du dela med dig utav?");
+            string post = Console.ReadLine();
+            listofposts.Add(post);
+        }
+
+        // Alternativ 2
         public static void ShowAllPost()
         {
             Console.WriteLine();
@@ -122,12 +131,54 @@ namespace Twitter_Projekt
                 }
             }
         }
-
-        public static void CreatePost()
+        // Alternativ 3
+        public static void DeleteTweet()
         {
-            Console.WriteLine("Vad vill du dela med dig utav?");
-            string post = Console.ReadLine();
-            listofposts.Add(post);
+            Console.WriteLine("Skriv vilket inlägg du vill ta bort");
+            ShowAllPost();
+            int removePost = int.Parse(Console.ReadLine());
+            listofposts.RemoveAt(removePost - 1);
+            Console.WriteLine($"Du tog bort inlägg nummer {removePost}");
+        }
+
+        // Alternativ 4
+        public static void SearchForUSer()
+        {
+            Console.Write("Ange användarnamnet på personen du vill följa: ");
+            string userToFollow = Console.ReadLine();
+
+            User user = users.FirstOrDefault(u => u.Username.Equals(userToFollow, StringComparison.OrdinalIgnoreCase));
+            if (user != null)
+            {
+                user.Followers.Add(loggedInUsername);
+                Console.WriteLine($"Du följer nu {userToFollow}.");
+            }
+            else
+            {
+                Console.WriteLine("Användaren finns inte.");
+            }
+        }
+
+        //Alternativ 5
+        public static void Reposta()
+        {
+            Console.WriteLine("Vilket inlägg vill du reposta");
+            ShowAllPost();
+            repostChoice = int.Parse(Console.ReadLine()) - 1;
+
+            Console.WriteLine($"Du har nu repostat {listofposts[repostChoice]}");
+
+        }
+        // Alternativ 6
+        public static void ShowUserInfo()
+        {
+            User user = users.FirstOrDefault(u => u.Username == loggedInUsername);
+            if (user != null)
+            {
+                int followersCount = user.Followers.Count;
+                int followingCount = users.Count(u => u.Followers.Contains(loggedInUsername));
+                Console.WriteLine($"Du har {followersCount} följare och följer {followingCount} person.");
+            }
         }
 
         public static void Createaccoount()
@@ -191,54 +242,7 @@ namespace Twitter_Projekt
             }
             return new List<User>();
         }
-
-        public static void DeleteTweet()
-        {
-            Console.WriteLine("Skriv vilket inlägg du vill ta bort");
-            ShowAllPost();
-            int removePost = int.Parse(Console.ReadLine());
-            listofposts.RemoveAt(removePost - 1);
-            Console.WriteLine($"Du tog bort inlägg nummer {removePost}");
-        }
-
-        public static void Reposta()
-        {
-            Console.WriteLine("Vilket inlägg vill du reposta");
-            ShowAllPost();
-            repostChoice = int.Parse(Console.ReadLine()) - 1;
-
-            Console.WriteLine($"Du har nu repostat {listofposts[repostChoice]}");
-
-        }
-
-        public static void SearchForUSer()
-        {
-            Console.Write("Ange användarnamnet på personen du vill följa: ");
-            string userToFollow = Console.ReadLine();
-
-            User user = users.FirstOrDefault(u => u.Username.Equals(userToFollow, StringComparison.OrdinalIgnoreCase));
-            if (user != null)
-            {
-                user.Followers.Add(loggedInUsername);
-                Console.WriteLine($"Du följer nu {userToFollow}.");
-            }
-            else
-            {
-                Console.WriteLine("Användaren finns inte.");
-            }
-        }
-
-        public static void ShowUserInfo()
-        {
-            User user = users.FirstOrDefault(u => u.Username == loggedInUsername);
-            if (user != null)
-            {
-                int followersCount = user.Followers.Count;
-                int followingCount = users.Count(u => u.Followers.Contains(loggedInUsername));
-                Console.WriteLine($"Du har {followersCount} följare och följer {followingCount} person.");
-            }
-        }
-
+       
 
     }
 }
