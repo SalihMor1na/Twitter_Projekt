@@ -18,6 +18,7 @@ namespace Twitter_Projekt
         public static List<User> users = LoadUsers();
         public static int loginChooise;
         public static int repostChoice;
+        public static List<string> repostList = new List<string>();
 
         public static string loggedInUsername;
 
@@ -184,7 +185,24 @@ namespace Twitter_Projekt
             ShowAllPost();
             repostChoice = int.Parse(Console.ReadLine()) - 1;
 
+            var saveRepost = listofposts[repostChoice];
+            repostList.Add(saveRepost);
             Console.WriteLine($"Du har nu repostat {listofposts[repostChoice]}");
+
+            Console.WriteLine("Vill du se alla dina repost svara med Ja/Nej");
+            string showRepostChoice = Console.ReadLine().ToLower();
+
+            if (showRepostChoice == "ja")
+            {
+                foreach (var item in repostList)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            else if (repostList == null)
+            {
+                Console.WriteLine("Finns inga repost");
+            }
 
         }
         // Alternativ 6 - Visa följare och personer du följer.
