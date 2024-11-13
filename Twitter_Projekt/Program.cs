@@ -28,10 +28,16 @@ namespace Twitter_Projekt
             bool isRunnning = true;
             while (isRunnning)
             {
-                Console.WriteLine("1: Skapa ett konto");
-                Console.WriteLine("2: Logga in");
-                Console.WriteLine("3: Avsluta programmet");
-
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 1: Skapa Konto        |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 2: Logga in           |");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 3: Avsluta Programmet |");
+                Console.WriteLine(" -----------------------");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.White;
                 try
                 {
                     loginChooise = int.Parse(Console.ReadLine());
