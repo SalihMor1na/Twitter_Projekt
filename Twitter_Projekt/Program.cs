@@ -107,7 +107,7 @@ namespace Twitter_Projekt
                     run = false;
                 }
             }
-            
+
             listofposts.RemoveAt(removePost - 1);
             Console.WriteLine($"Du tog bort inlägg nummer {removePost}");
         }
@@ -138,8 +138,8 @@ namespace Twitter_Projekt
             bool run = true;
             while (run)
             {
-                
-                try { repostChoice = int.Parse(Console.ReadLine()) - 1;}
+
+                try { repostChoice = int.Parse(Console.ReadLine()) - 1; }
                 catch
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -155,7 +155,7 @@ namespace Twitter_Projekt
                     Console.ForegroundColor = ConsoleColor.White;
                 }
 
-               if (repostChoice >= 0 && repostChoice < listofposts.Count)
+                if (repostChoice >= 0 && repostChoice < listofposts.Count)
                 {
                     run = false;
                 }
@@ -167,7 +167,7 @@ namespace Twitter_Projekt
 
             Console.WriteLine("Vill du se alla dina repost svara med Ja/Nej");
             string showRepostChoice = Console.ReadLine().ToLower();
-            
+
 
             if (showRepostChoice == "ja")
             {
@@ -216,11 +216,15 @@ namespace Twitter_Projekt
         //Alternativ 9
         public static void Logout()
         {
-            Console.Clear();
-            loggedInUsername = null;
-            Console.WriteLine("Du har loggat ut.");
-            Thread.Sleep(2000);
-            HandleLoginMenu();
+            Console.Write("Är du säker på att du vill logga ut? (Ja/Nej): ");
+            if (Console.ReadLine().Trim().ToLower() == "ja")
+            {
+                Console.Clear();
+                loggedInUsername = null;
+                Console.WriteLine("Du har loggat ut.");
+                Thread.Sleep(2000);
+                HandleLoginMenu();
+            }
         }
         // Skapa ett konto.
         public static void CreateAccoount()
@@ -270,7 +274,7 @@ namespace Twitter_Projekt
                     return true;
                 }
             }
-            
+
             Console.WriteLine("Fel användarnamn eller lösenord.");
             return false;
         }
@@ -342,16 +346,16 @@ namespace Twitter_Projekt
                 }
             }
         }
-    
+
         public static void HandleMenu()
         {
             bool error = false;
             bool runProgram = true;
             while (runProgram)
             {
-             
+
                 Console.Clear();
-            
+
                 if (error == true)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -388,7 +392,7 @@ namespace Twitter_Projekt
                 Console.ForegroundColor = ConsoleColor.White;
 
                 Console.WriteLine();
-            
+
                 int chooise = 0;
                 try { chooise = int.Parse(Console.ReadLine()); }
                 catch
