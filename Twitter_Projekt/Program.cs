@@ -144,8 +144,15 @@ namespace Twitter_Projekt
                 int i = 1;
                 foreach (string post in listofposts)
                 {
+                    int postLength = post.Length + 6;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine(new string('-', postLength));
 
-                    Console.WriteLine($"{i}.{post}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($"| {i}.{post} |");
+
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine(new string('-', postLength));
                     i++;
                 }
             }
