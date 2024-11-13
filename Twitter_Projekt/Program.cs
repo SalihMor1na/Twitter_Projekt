@@ -213,7 +213,7 @@ namespace Twitter_Projekt
             }
         }
 
-        //Alternativ 9
+        //Alternativ 8
         public static void Logout()
         {
             Console.Write("Är du säker på att du vill logga ut? (Ja/Nej): ");
@@ -224,6 +224,22 @@ namespace Twitter_Projekt
                 Console.WriteLine("Du har loggat ut.");
                 Thread.Sleep(2000);
                 HandleLoginMenu();
+            }
+        }
+        //Alternativ 9 
+        public static void EditPost()
+        {
+            Console.WriteLine("Ange numret på inlägget du vill redigera:");
+            ShowAllPost();
+            if (int.TryParse(Console.ReadLine(), out int postNumber) && postNumber > 0 && postNumber <= listofposts.Count)
+            {
+                Console.Write("Skriv din nya text för inlägget: ");
+                listofposts[postNumber - 1] = Console.ReadLine();
+                Console.WriteLine("Inlägget har uppdaterats.");
+            }
+            else
+            {
+                Console.WriteLine("Ogiltigt nummer, försök igen.");
             }
         }
         // Skapa ett konto.
@@ -384,9 +400,12 @@ namespace Twitter_Projekt
                 Console.WriteLine(" -----------------------");
                 Console.WriteLine("| 8: Logga ut           |");
                 Console.WriteLine(" -----------------------");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("|9: Redigera inlägg     |");
+                Console.WriteLine(" -----------------------");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 9: Avsluta programmet |");
+                Console.WriteLine("| 10: Avsluta programmet |");
                 Console.WriteLine(" -----------------------");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.White;
@@ -435,6 +454,9 @@ namespace Twitter_Projekt
                         Logout();
                         break;
                     case 9:
+                        EditPost();
+                        break;
+                    case 10:
                         runProgram = false;
                         Console.WriteLine("Programmet avslutas nu.");
                         Thread.Sleep(2000);
