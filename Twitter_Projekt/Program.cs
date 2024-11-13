@@ -74,15 +74,27 @@ namespace Twitter_Projekt
             {
                 Console.Clear();
                 Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("Välj ett av följande alternativ");
-                Console.WriteLine("1: Skapa ett inlägg");
-                Console.WriteLine("2: Visa alla tweets");
-                Console.WriteLine("3: Ta bort tweet");
-                Console.WriteLine("4: Sök efter följare");
-                Console.WriteLine("5: Retweeta");
-                Console.WriteLine("6: Skicka DM");
-                Console.WriteLine("7: Visa mina följare");
-                Console.WriteLine("8: Avsluta programmet");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine();
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 1: Skapa ett inlägg   |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 2: Visa alla tweets   |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 3: Ta bort tweet      |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 4: Sök efter följare  |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 5: Retweeta           |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 6: Skicka DM          |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 7: Visa mina följare  |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 8: Avsluta programmet |");
+                Console.WriteLine(" -----------------------");
                 Console.WriteLine();
 
                 int chooise = int.Parse(Console.ReadLine());
