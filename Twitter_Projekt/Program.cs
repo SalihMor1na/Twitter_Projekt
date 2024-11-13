@@ -135,7 +135,31 @@ namespace Twitter_Projekt
         {
             Console.WriteLine("Vilket inlägg vill du reposta");
             ShowAllPost();
-            repostChoice = int.Parse(Console.ReadLine()) - 1;
+            bool run = true;
+            while (run)
+            {
+                
+                try { repostChoice = int.Parse(Console.ReadLine()) - 1;}
+                catch
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Det måste vara ett av följade nummer!");
+                    try { repostChoice = int.Parse(Console.ReadLine()) - 1; }
+                    catch
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Det måste vara ett av följade nummer!");
+                        repostChoice = int.Parse(Console.ReadLine()) - 1;
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+
+               if (repostChoice >= 0 && repostChoice < listofposts.Count)
+                {
+                    run = false;
+                }
+            }
 
             var saveRepost = listofposts[repostChoice];
             repostList.Add(saveRepost);
@@ -143,6 +167,7 @@ namespace Twitter_Projekt
 
             Console.WriteLine("Vill du se alla dina repost svara med Ja/Nej");
             string showRepostChoice = Console.ReadLine().ToLower();
+            
 
             if (showRepostChoice == "ja")
             {
