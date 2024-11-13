@@ -252,6 +252,12 @@ namespace Twitter_Projekt
 
             Console.Write("Ange ett lösenord: ");
             string password = Console.ReadLine();
+            while (password.Length < 6 || !password.Any(char.IsDigit) || !password.Any(char.IsLetter))
+            {
+                Console.WriteLine("Lösenordet måste vara minst 6 tecken långt och innehålla både siffror och bokstäver, Försök igen!");
+                Console.Write("Ange ett lösenord: ");
+                password = Console.ReadLine();
+            }
 
             foreach (User user in users)
             {
