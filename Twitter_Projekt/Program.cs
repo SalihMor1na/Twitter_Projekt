@@ -25,55 +25,7 @@ namespace Twitter_Projekt
         public static void Main(string[] args)
         {
             LoadUsers();
-            bool isRunnning = true;
-            while (isRunnning)
-            {
-                Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 1: Skapa Konto        |");
-                Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 2: Logga in           |");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 3: Avsluta Programmet |");
-                Console.WriteLine(" -----------------------");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.ForegroundColor = ConsoleColor.White;
-                try
-                {
-                    loginChooise = int.Parse(Console.ReadLine());
-                }
-                catch
-                {
-                    Console.WriteLine("Det måste vara en siffra");
-                }
-
-                if (loginChooise == 1)
-                {
-                    CreateAccoount();
-                }
-                else if (loginChooise == 2)
-                {
-                    if (Login())
-                    {
-                        Console.WriteLine($"Välkommen, {loggedInUsername}!");
-                        Thread.Sleep(2000);
-                        isRunnning = false;
-                    }
-                }
-                else if (loginChooise == 3)
-                {
-
-                    Console.WriteLine("Programmet avslutas nu.");
-                    Thread.Sleep(2000);
-                    isRunnning = false;
-                    Environment.Exit(0);
-                }
-
-                else
-                {
-                    Console.WriteLine("Vänligen ange ett giltigt val!");
-                }
-            }
+            HandleLoginMenu();
 
             bool runProgram = true;
             while (runProgram)
@@ -98,12 +50,16 @@ namespace Twitter_Projekt
                 Console.WriteLine("| 6: Skicka DM          |");
                 Console.WriteLine(" -----------------------");
                 Console.WriteLine("| 7: Visa mina följare  |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 8: Logga ut           |");
+                Console.WriteLine(" -----------------------");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 8: Avsluta programmet |");
+                Console.WriteLine("| 9: Avsluta programmet |");
                 Console.WriteLine(" -----------------------");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.White;
+
                 Console.WriteLine();
 
                 int chooise = int.Parse(Console.ReadLine());
@@ -129,13 +85,14 @@ namespace Twitter_Projekt
                         ShowUserInfo();
                         break;
                     case 8:
+                        Logout();
+                        break;
+                    case 9:
                         runProgram = false;
                         Console.WriteLine("Programmet avslutas nu.");
                         Thread.Sleep(2000);
                         Environment.Exit(0);
                         break;
-
-
                 }
 
                 Console.ReadKey();
@@ -233,7 +190,7 @@ namespace Twitter_Projekt
             }
 
         }
-        // Alternativ 6 - Visa följare och personer du följer.
+        // Alternativ 7 - Visa följare och personer du följer.
         public static void ShowUserInfo()
         {
             User user = users.FirstOrDefault(u => u.Username == loggedInUsername);
@@ -243,6 +200,16 @@ namespace Twitter_Projekt
                 int followingCount = users.Count(u => u.Followers.Contains(loggedInUsername));
                 Console.WriteLine($"Du har {followersCount} följare och följer {followingCount} person.");
             }
+        }
+
+        //Alternativ 9
+        public static void Logout()
+        {
+            Console.Clear();
+            loggedInUsername = null;
+            Console.WriteLine("Du har loggat ut.");
+            Thread.Sleep(2000);
+            HandleLoginMenu();
         }
         // Skapa ett konto.
         public static void CreateAccoount()
@@ -312,7 +279,59 @@ namespace Twitter_Projekt
             return new List<User>();
         }
 
+        public static void HandleLoginMenu()
+        {
+            bool isRunnning = true;
+            while (isRunnning)
+            {
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 1: Skapa Konto        |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 2: Logga in           |");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 3: Avsluta Programmet |");
+                Console.WriteLine(" -----------------------");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.White;
+                try
+                {
+                    loginChooise = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Det måste vara en siffra");
+                }
 
+                if (loginChooise == 1)
+                {
+                    CreateAccoount();
+                }
+                else if (loginChooise == 2)
+                {
+                    if (Login())
+                    {
+                        Console.WriteLine($"Välkommen, {loggedInUsername}!");
+                        Thread.Sleep(2000);
+                        isRunnning = false;
+                    }
+                }
+                else if (loginChooise == 3)
+                {
+
+                    Console.WriteLine("Programmet avslutas nu.");
+                    Thread.Sleep(2000);
+                    isRunnning = false;
+                    Environment.Exit(0);
+                }
+
+                else
+                {
+                    Console.WriteLine("Vänligen ange ett giltigt val!");
+                }
+            }
+
+        }
     }
 }
 
