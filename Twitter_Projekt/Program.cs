@@ -281,12 +281,22 @@ namespace Twitter_Projekt
                 }
             }
         }
-            public static void HandleMenu()
+    
+        public static void HandleMenu()
         {
+            bool error = false;
             bool runProgram = true;
             while (runProgram)
             {
+             
                 Console.Clear();
+            
+                if (error == true)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Det måste vara ett nummer!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("Välj ett av följande alternativ");
@@ -317,8 +327,14 @@ namespace Twitter_Projekt
                 Console.ForegroundColor = ConsoleColor.White;
 
                 Console.WriteLine();
+            
+                int chooise = 0;
+                try { chooise = int.Parse(Console.ReadLine()); }
+                catch
+                {
+                    error = true;
+                }
 
-                int chooise = int.Parse(Console.ReadLine());
 
                 switch (chooise)
                 {
