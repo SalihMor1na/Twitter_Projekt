@@ -121,6 +121,25 @@ namespace Twitter_Projekt
             }
 
         }
+
+        //Alternativ 6 - Skickar meddelande till en användare.
+        public static void SendDirectMessage()
+        {
+            Console.Write("Ange mottagarens användarnamn: ");
+            string recipient = Console.ReadLine();
+            User user = users.FirstOrDefault(u => u.Username == recipient);
+            if (user != null)
+            {
+                Console.Write("Skriv ditt meddelande: ");
+                string message = Console.ReadLine();
+                Console.WriteLine($"Meddelande skickat till {recipient}: {message}");
+            }
+            else
+            {
+                Console.WriteLine("Användaren finns inte.");
+            }
+        }
+
         // Alternativ 7 - Visa följare och personer du följer.
         public static void ShowUserInfo()
         {
@@ -320,6 +339,9 @@ namespace Twitter_Projekt
                         break;
                     case 7:
                         ShowUserInfo();
+                        break;
+                    case 6:
+                        SendDirectMessage();
                         break;
                     case 8:
                         Logout();
