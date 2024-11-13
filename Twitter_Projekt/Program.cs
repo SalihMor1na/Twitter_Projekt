@@ -91,6 +91,7 @@ namespace Twitter_Projekt
                         Reposta();
                         break;
 
+
                 }
 
                 Console.ReadKey();
@@ -200,7 +201,7 @@ namespace Twitter_Projekt
         {
             Console.WriteLine("Vilket inlägg vill du reposta");
             ShowAllPost();
-            repostChoice = int.Parse(Console.ReadLine()) -1;
+            repostChoice = int.Parse(Console.ReadLine()) - 1;
 
             Console.WriteLine($"Du har nu repostat {listofposts[repostChoice]}");
 
@@ -208,22 +209,21 @@ namespace Twitter_Projekt
 
         public static void SearchForUSer()
         {
-            Console.Write("Ange användarnamnet på personen du vill söka efter: ");
-            string search = Console.ReadLine();
+            Console.Write("Ange användarnamnet på personen du vill följa: ");
+            string userToFollow = Console.ReadLine();
 
-            User foundUser = users.FirstOrDefault(user => user.Username.Equals(search, StringComparison.OrdinalIgnoreCase));
-
-            if (foundUser != null)
+            User user = users.FirstOrDefault(u => u.Username.Equals(userToFollow, StringComparison.OrdinalIgnoreCase));
+            if (user != null)
             {
-                Console.WriteLine($"Användaren '{search}' finns i systemet.");
+                user.Followers.Add(loggedInUsername);
+                Console.WriteLine($"Du följer nu {userToFollow}.");
             }
             else
             {
-                Console.WriteLine($"Användaren '{search}' finns inte i systemet.");
+                Console.WriteLine("Användaren finns inte.");
             }
-
-
         }
+
     }
 }
 

@@ -8,5 +8,6 @@ namespace Twitter_Projekt
     {
         public string Username { get; set; }
         public string Password { get; set; }
+        public List<string> Followers { get; set; } = new List<string>();
     }
 }
