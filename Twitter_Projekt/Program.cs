@@ -412,7 +412,14 @@ namespace Twitter_Projekt
                         SearchForUSer();
                         break;
                     case 5:
-                        Reposta();
+                        if (listofposts.Count >= 1)
+                        {
+                            Reposta();
+                        }
+                        else if (listofposts.Count < 1)
+                        {
+                            Console.WriteLine("finns inga inlägg att reposta!");
+                        }
                         break;
                     case 7:
                         ShowUserInfo();
