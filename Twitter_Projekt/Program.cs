@@ -41,7 +41,7 @@ namespace Twitter_Projekt
 
                 if (loginChooise == 1)
                 {
-                    Createaccoount();
+                    CreateAccoount();
                 }
                 else if (loginChooise == 2)
                 {
@@ -182,7 +182,7 @@ namespace Twitter_Projekt
             }
         }
         // Skapa ett konto.
-        public static void Createaccoount()
+        public static void CreateAccoount()
         {
             Console.Write("Ange ett användarnamn: ");
             string username = Console.ReadLine();
