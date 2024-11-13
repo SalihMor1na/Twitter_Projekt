@@ -69,6 +69,7 @@ namespace Twitter_Projekt
                 Console.WriteLine("4: Sök efter följare");
                 Console.WriteLine("5: Retweeta");
                 Console.WriteLine("6: Skicka DM");
+                Console.WriteLine("7: Visa mina följare");
                 Console.WriteLine();
 
                 int chooise = int.Parse(Console.ReadLine());
@@ -89,6 +90,9 @@ namespace Twitter_Projekt
                         break;
                     case 5:
                         Reposta();
+                        break;
+                    case 7:
+                        ShowUserInfo();
                         break;
 
 
@@ -223,6 +227,18 @@ namespace Twitter_Projekt
                 Console.WriteLine("Användaren finns inte.");
             }
         }
+
+        public static void ShowUserInfo()
+        {
+            User user = users.FirstOrDefault(u => u.Username == loggedInUsername);
+            if (user != null)
+            {
+                int followersCount = user.Followers.Count;
+                int followingCount = users.Count(u => u.Followers.Contains(loggedInUsername));
+                Console.WriteLine($"Du har {followersCount} följare och följer {followingCount} person.");
+            }
+        }
+
 
     }
 }
