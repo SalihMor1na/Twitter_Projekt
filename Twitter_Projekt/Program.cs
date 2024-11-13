@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 
 
 namespace Twitter_Projekt
@@ -73,15 +74,33 @@ namespace Twitter_Projekt
         {
             Console.WriteLine("Skriv vilket inlägg du vill ta bort");
             ShowAllPost();
-            
-            int removePost = int.Parse(Console.ReadLine());
+            int removePost = 0;
+            try
+            {
+                removePost = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Det måste vara ett nummer!");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
             bool run = true;
             while (run)
             {
                 if (removePost > listofposts.Count || removePost < listofposts.Count)
                 {
                     Console.WriteLine("Det inlägget finns ej! försök igen");
-                    removePost = int.Parse(Console.ReadLine());
+                    try
+                    {
+                        removePost = int.Parse(Console.ReadLine());
+                    }
+                    catch
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Det måste vara ett nummer!");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
                 }
                 else
                 {
@@ -226,7 +245,7 @@ namespace Twitter_Projekt
                     return true;
                 }
             }
-
+            
             Console.WriteLine("Fel användarnamn eller lösenord.");
             return false;
         }
