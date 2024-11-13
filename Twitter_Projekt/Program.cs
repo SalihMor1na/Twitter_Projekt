@@ -92,9 +92,12 @@ namespace Twitter_Projekt
                 Console.WriteLine("| 6: Skicka DM          |");
                 Console.WriteLine(" -----------------------");
                 Console.WriteLine("| 7: Visa mina följare  |");
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(" -----------------------");
                 Console.WriteLine("| 8: Avsluta programmet |");
                 Console.WriteLine(" -----------------------");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine();
 
                 int chooise = int.Parse(Console.ReadLine());
