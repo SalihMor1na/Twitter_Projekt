@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
+using System.Windows;
 
 
 namespace Twitter_Projekt
@@ -62,6 +63,7 @@ namespace Twitter_Projekt
 
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine(new string('-', postLength));
+                    Console.ForegroundColor = ConsoleColor.White;
                     i++;
                 }
             }
@@ -71,7 +73,22 @@ namespace Twitter_Projekt
         {
             Console.WriteLine("Skriv vilket inlägg du vill ta bort");
             ShowAllPost();
+            
             int removePost = int.Parse(Console.ReadLine());
+            bool run = true;
+            while (run)
+            {
+                if (removePost > listofposts.Count || removePost < listofposts.Count)
+                {
+                    Console.WriteLine("Det inlägget finns ej! försök igen");
+                    removePost = int.Parse(Console.ReadLine());
+                }
+                else
+                {
+                    run = false;
+                }
+            }
+            
             listofposts.RemoveAt(removePost - 1);
             Console.WriteLine($"Du tog bort inlägg nummer {removePost}");
         }
