@@ -29,6 +29,7 @@ namespace Twitter_Projekt
             {
                 Console.WriteLine("1: Skapa ett konto");
                 Console.WriteLine("2: Logga in");
+                Console.WriteLine("3: Avsluta programmet");
 
                 try
                 {
@@ -52,14 +53,23 @@ namespace Twitter_Projekt
                         isRunnning = false;
                     }
                 }
+                else if (loginChooise == 3)
+                {
+
+                    Console.WriteLine("Programmet avslutas nu.");
+                    Thread.Sleep(2000);
+                    isRunnning = false;
+                    Environment.Exit(0);
+                }
+
                 else
                 {
                     Console.WriteLine("Vänligen ange ett giltigt val!");
                 }
             }
 
-
-            while (true)
+            bool runProgram = true;
+            while (runProgram)
             {
                 Console.Clear();
                 Console.WriteLine();
@@ -71,6 +81,7 @@ namespace Twitter_Projekt
                 Console.WriteLine("5: Retweeta");
                 Console.WriteLine("6: Skicka DM");
                 Console.WriteLine("7: Visa mina följare");
+                Console.WriteLine("8: Avsluta programmet");
                 Console.WriteLine();
 
                 int chooise = int.Parse(Console.ReadLine());
@@ -94,6 +105,12 @@ namespace Twitter_Projekt
                         break;
                     case 7:
                         ShowUserInfo();
+                        break;
+                    case 8:
+                        runProgram = false;
+                        Console.WriteLine("Programmet avslutas nu.");
+                        Thread.Sleep(2000);
+                        Environment.Exit(0);
                         break;
 
 
