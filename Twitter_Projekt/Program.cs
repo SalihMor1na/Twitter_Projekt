@@ -26,79 +26,10 @@ namespace Twitter_Projekt
         {
             LoadUsers();
             HandleLoginMenu();
+            HandleMenu();
 
-            bool runProgram = true;
-            while (runProgram)
-            {
-                Console.Clear();
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("Välj ett av följande alternativ");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine();
-                Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 1: Skapa ett inlägg   |");
-                Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 2: Visa alla tweets   |");
-                Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 3: Ta bort tweet      |");
-                Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 4: Sök efter följare  |");
-                Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 5: Retweeta           |");
-                Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 6: Skicka DM          |");
-                Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 7: Visa mina följare  |");
-                Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 8: Logga ut           |");
-                Console.WriteLine(" -----------------------");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 9: Avsluta programmet |");
-                Console.WriteLine(" -----------------------");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.ForegroundColor = ConsoleColor.White;
 
-                Console.WriteLine();
-
-                int chooise = int.Parse(Console.ReadLine());
-
-                switch (chooise)
-                {
-                    case 1:
-                        CreatePost();
-                        break;
-                    case 2:
-                        ShowAllPost();
-                        break;
-                    case 3:
-                        DeleteTweet();
-                        break;
-                    case 4:
-                        SearchForUSer();
-                        break;
-                    case 5:
-                        Reposta();
-                        break;
-                    case 7:
-                        ShowUserInfo();
-                        break;
-                    case 8:
-                        Logout();
-                        break;
-                    case 9:
-                        runProgram = false;
-                        Console.WriteLine("Programmet avslutas nu.");
-                        Thread.Sleep(2000);
-                        Environment.Exit(0);
-                        break;
-                }
-
-                Console.ReadKey();
-            }
         }
-
         // Alternativ 1 - Skapa Post
         public static void CreatePost()
         {
@@ -330,8 +261,81 @@ namespace Twitter_Projekt
                     Console.WriteLine("Vänligen ange ett giltigt val!");
                 }
             }
-
         }
+            public static void HandleMenu()
+        {
+            bool runProgram = true;
+            while (runProgram)
+            {
+                Console.Clear();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Välj ett av följande alternativ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine();
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 1: Skapa ett inlägg   |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 2: Visa alla tweets   |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 3: Ta bort tweet      |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 4: Sök efter följare  |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 5: Retweeta           |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 6: Skicka DM          |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 7: Visa mina följare  |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 8: Logga ut           |");
+                Console.WriteLine(" -----------------------");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 9: Avsluta programmet |");
+                Console.WriteLine(" -----------------------");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Console.WriteLine();
+
+                int chooise = int.Parse(Console.ReadLine());
+
+                switch (chooise)
+                {
+                    case 1:
+                        CreatePost();
+                        break;
+                    case 2:
+                        ShowAllPost();
+                        break;
+                    case 3:
+                        DeleteTweet();
+                        break;
+                    case 4:
+                        SearchForUSer();
+                        break;
+                    case 5:
+                        Reposta();
+                        break;
+                    case 7:
+                        ShowUserInfo();
+                        break;
+                    case 8:
+                        Logout();
+                        break;
+                    case 9:
+                        runProgram = false;
+                        Console.WriteLine("Programmet avslutas nu.");
+                        Thread.Sleep(2000);
+                        Environment.Exit(0);
+                        break;
+                }
+
+                Console.ReadKey();
+            }
+        }
+
     }
 }
 
