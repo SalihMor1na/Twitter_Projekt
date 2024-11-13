@@ -58,6 +58,7 @@ namespace Twitter_Projekt
                 }
             }
 
+
             while (true)
             {
                 Console.Clear();
@@ -102,7 +103,7 @@ namespace Twitter_Projekt
             }
         }
 
-        // Alternativ 1
+        // Alternativ 1 - Skapa Post
         public static void CreatePost()
         {
             Console.WriteLine("Vad vill du dela med dig utav?");
@@ -110,7 +111,7 @@ namespace Twitter_Projekt
             listofposts.Add(post);
         }
 
-        // Alternativ 2
+        // Alternativ 2 - Visa alla posts.
         public static void ShowAllPost()
         {
             Console.WriteLine();
@@ -131,7 +132,7 @@ namespace Twitter_Projekt
                 }
             }
         }
-        // Alternativ 3
+        // Alternativ 3 - Ta bort tweet.
         public static void DeleteTweet()
         {
             Console.WriteLine("Skriv vilket inlägg du vill ta bort");
@@ -141,7 +142,7 @@ namespace Twitter_Projekt
             Console.WriteLine($"Du tog bort inlägg nummer {removePost}");
         }
 
-        // Alternativ 4
+        // Alternativ 4 - Sök efter användare.
         public static void SearchForUSer()
         {
             Console.Write("Ange användarnamnet på personen du vill följa: ");
@@ -159,7 +160,7 @@ namespace Twitter_Projekt
             }
         }
 
-        //Alternativ 5
+        //Alternativ 5 - Reposta en tweet.
         public static void Reposta()
         {
             Console.WriteLine("Vilket inlägg vill du reposta");
@@ -169,7 +170,7 @@ namespace Twitter_Projekt
             Console.WriteLine($"Du har nu repostat {listofposts[repostChoice]}");
 
         }
-        // Alternativ 6
+        // Alternativ 6 - Visa följare och personer du följer.
         public static void ShowUserInfo()
         {
             User user = users.FirstOrDefault(u => u.Username == loggedInUsername);
@@ -180,7 +181,7 @@ namespace Twitter_Projekt
                 Console.WriteLine($"Du har {followersCount} följare och följer {followingCount} person.");
             }
         }
-
+        // Skapa ett konto.
         public static void Createaccoount()
         {
             Console.Write("Ange ett användarnamn: ");
@@ -204,7 +205,7 @@ namespace Twitter_Projekt
             SaveUsers();
             Console.WriteLine("Konto skapat!");
         }
-
+        // Login
         public static bool Login()
         {
             Console.Write("Ange ditt användarnamn: ");
@@ -226,7 +227,6 @@ namespace Twitter_Projekt
             Console.WriteLine("Fel användarnamn eller lösenord.");
             return false;
         }
-
         public static void SaveUsers()
         {
             string jsonString = JsonSerializer.Serialize(users);
@@ -242,7 +242,7 @@ namespace Twitter_Projekt
             }
             return new List<User>();
         }
-       
+
 
     }
 }
