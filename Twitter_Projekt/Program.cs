@@ -11,8 +11,6 @@ using System.Threading.Tasks;
 
 namespace Twitter_Projekt
 {
-
-
     class Program
     {
         public static List<string> listofposts = new List<string>();
@@ -63,6 +61,7 @@ namespace Twitter_Projekt
 
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine(new string('-', postLength));
+                    Console.ForegroundColor = ConsoleColor.White;
                     i++;
                 }
             }
@@ -72,7 +71,40 @@ namespace Twitter_Projekt
         {
             Console.WriteLine("Skriv vilket inlägg du vill ta bort");
             ShowAllPost();
-            int removePost = int.Parse(Console.ReadLine());
+            int removePost = 0;
+            try
+            {
+                removePost = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Det måste vara ett nummer!");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            bool run = true;
+            while (run)
+            {
+                if (removePost > listofposts.Count || removePost < listofposts.Count)
+                {
+                    Console.WriteLine("Det inlägget finns ej! försök igen");
+                    try
+                    {
+                        removePost = int.Parse(Console.ReadLine());
+                    }
+                    catch
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Det måste vara ett nummer!");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                }
+                else
+                {
+                    run = false;
+                }
+            }
+
             listofposts.RemoveAt(removePost - 1);
             Console.WriteLine($"Du tog bort inlägg nummer {removePost}");
         }
@@ -100,7 +132,31 @@ namespace Twitter_Projekt
         {
             Console.WriteLine("Vilket inlägg vill du reposta");
             ShowAllPost();
-            repostChoice = int.Parse(Console.ReadLine()) - 1;
+            bool run = true;
+            while (run)
+            {
+
+                try { repostChoice = int.Parse(Console.ReadLine()) - 1; }
+                catch
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Det måste vara ett av följade nummer!");
+                    try { repostChoice = int.Parse(Console.ReadLine()) - 1; }
+                    catch
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Det måste vara ett av följade nummer!");
+                        repostChoice = int.Parse(Console.ReadLine()) - 1;
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+
+                if (repostChoice >= 0 && repostChoice < listofposts.Count)
+                {
+                    run = false;
+                }
+            }
 
             var saveRepost = listofposts[repostChoice];
             repostList.Add(saveRepost);
@@ -108,6 +164,7 @@ namespace Twitter_Projekt
 
             Console.WriteLine("Vill du se alla dina repost svara med Ja/Nej");
             string showRepostChoice = Console.ReadLine().ToLower();
+
 
             if (showRepostChoice == "ja")
             {
@@ -153,14 +210,34 @@ namespace Twitter_Projekt
             }
         }
 
-        //Alternativ 9
+        //Alternativ 8
         public static void Logout()
         {
-            Console.Clear();
-            loggedInUsername = null;
-            Console.WriteLine("Du har loggat ut.");
-            Thread.Sleep(2000);
-            HandleLoginMenu();
+            Console.Write("Är du säker på att du vill logga ut? (Ja/Nej): ");
+            if (Console.ReadLine().Trim().ToLower() == "ja")
+            {
+                Console.Clear();
+                loggedInUsername = null;
+                Console.WriteLine("Du har loggat ut.");
+                Thread.Sleep(2000);
+                HandleLoginMenu();
+            }
+        }
+        //Alternativ 9 
+        public static void EditPost()
+        {
+            Console.WriteLine("Ange numret på inlägget du vill redigera:");
+            ShowAllPost();
+            if (int.TryParse(Console.ReadLine(), out int postNumber) && postNumber > 0 && postNumber <= listofposts.Count)
+            {
+                Console.Write("Skriv din nya text för inlägget: ");
+                listofposts[postNumber - 1] = Console.ReadLine();
+                Console.WriteLine("Inlägget har uppdaterats.");
+            }
+            else
+            {
+                Console.WriteLine("Ogiltigt nummer, försök igen.");
+            }
         }
         // Skapa ett konto.
         public static void CreateAccount()
@@ -169,7 +246,7 @@ namespace Twitter_Projekt
             string username = Console.ReadLine();
 
             Console.Write("Ange ett lösenord: ");
-            string password = Console.ReadLine();
+            string password = ReadPassword();
             while (password.Length < 6 || !password.Any(char.IsDigit) || !password.Any(char.IsLetter))
             {
                 Console.WriteLine("Lösenordet måste vara minst 6 tecken långt och innehålla både siffror och bokstäver, Försök igen!");
@@ -204,7 +281,7 @@ namespace Twitter_Projekt
             string username = Console.ReadLine();
 
             Console.Write("Ange ditt lösenord: ");
-            string password = Console.ReadLine();
+            string password = ReadPassword();
 
             foreach (User user in users)
             {
@@ -218,6 +295,35 @@ namespace Twitter_Projekt
 
             Console.WriteLine("Fel användarnamn eller lösenord.");
             return false;
+        }
+        public static string ReadPassword()
+        {
+            string password = "";
+            while (true)
+            {
+ 
+                var key = Console.ReadKey(intercept: true);
+
+                if (key.Key == ConsoleKey.Enter)
+                {
+                    Console.WriteLine("\n");
+                    break;
+                }
+                
+                else if (key.Key == ConsoleKey.Backspace && password.Length > 0)
+                {
+                    password = password.Substring(0, password.Length - 1);
+                    Console.Write("\b \b");
+                }
+       
+                else if (key.KeyChar != '\0')
+                {
+                    password += key.KeyChar;
+                    Console.Write("*"); 
+                }
+            }
+
+            return password;
         }
         public static void SaveUsers()
         {
@@ -290,7 +396,7 @@ namespace Twitter_Projekt
 
                 if (loginChooise == 1)
                 {
-                    CreateAccoount();
+                    CreateAccount();
                 }
                 else if (loginChooise == 2)
                 {
@@ -316,12 +422,22 @@ namespace Twitter_Projekt
                 }
             }
         }
-            public static void HandleMenu()
+
+        public static void HandleMenu()
         {
+            bool error = false;
             bool runProgram = true;
             while (runProgram)
             {
+
                 Console.Clear();
+
+                if (error == true)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Det måste vara ett nummer!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("Välj ett av följande alternativ");
@@ -344,16 +460,25 @@ namespace Twitter_Projekt
                 Console.WriteLine(" -----------------------");
                 Console.WriteLine("| 8: Logga ut           |");
                 Console.WriteLine(" -----------------------");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("|9: Redigera inlägg     |");
+                Console.WriteLine(" -----------------------");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 9: Avsluta programmet |");
+                Console.WriteLine("| 10: Avsluta programmet |");
                 Console.WriteLine(" -----------------------");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.White;
 
                 Console.WriteLine();
 
-                int chooise = int.Parse(Console.ReadLine());
+                int chooise = 0;
+                try { chooise = int.Parse(Console.ReadLine()); }
+                catch
+                {
+                    error = true;
+                }
+
 
                 switch (chooise)
                 {
@@ -370,7 +495,14 @@ namespace Twitter_Projekt
                         SearchForUSer();
                         break;
                     case 5:
-                        Reposta();
+                        if (listofposts.Count >= 1)
+                        {
+                            Reposta();
+                        }
+                        else if (listofposts.Count < 1)
+                        {
+                            Console.WriteLine("finns inga inlägg att reposta!");
+                        }
                         break;
                     case 7:
                         ShowUserInfo();
@@ -382,6 +514,9 @@ namespace Twitter_Projekt
                         Logout();
                         break;
                     case 9:
+                        EditPost();
+                        break;
+                    case 10:
                         runProgram = false;
                         Console.WriteLine("Programmet avslutas nu.");
                         Thread.Sleep(2000);
