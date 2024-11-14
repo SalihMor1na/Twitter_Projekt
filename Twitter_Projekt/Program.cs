@@ -341,33 +341,28 @@ namespace Twitter_Projekt
             return new List<User>();
         }
         // Reklam dyker upp 5 sekunder
-        class Ad
+        public static async Task Ad()
         {
-            static async Task Main(string[] args)
+            Random random = new Random();
+
+            while (true)
             {
-                Random random = new Random();
-               
-                while (true)
-                {
-                    int randomInterval = random.Next(5000, 10000);
-                    await Task.Delay(randomInterval);
+                int randomInterval = random.Next(5000, 10000); // Ad interval between 5-10 seconds
+                await Task.Delay(randomInterval);
 
-                    ShowAd();
-
-
-                }
+                ShowAd();
             }
-            static void ShowAd()
-            {
-                Console.Clear();
-                Console.WriteLine("You are now watching an ad, the ad will end in 5 seconds...");
+        }
 
-                Thread.Sleep(5000);
+        public static void ShowAd()
+        {
+            Console.Clear();
+            Console.WriteLine("You are now watching an ad, the ad will end in 5 seconds...");
 
-                Console.Clear();
-                Console.WriteLine("You can now continue using Twitter");
+            Thread.Sleep(5000); // Display ad for 5 seconds
 
-            }
+            Console.Clear();
+            Console.WriteLine("You can now continue using Twitter");
         }
 
         public static void HandleLoginMenu()
@@ -385,6 +380,7 @@ namespace Twitter_Projekt
                 Console.WriteLine(" -----------------------");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.White;
+                Task adTask = Ad();
                 try
                 {
                     loginChooise = int.Parse(Console.ReadLine());
@@ -405,6 +401,7 @@ namespace Twitter_Projekt
                         Console.WriteLine($"Välkommen, {loggedInUsername}!");
                         Thread.Sleep(2000);
                         isRunnning = false;
+                        
                     }
                 }
                 else if (loginChooise == 3)
@@ -471,6 +468,7 @@ namespace Twitter_Projekt
                 Console.ForegroundColor = ConsoleColor.White;
 
                 Console.WriteLine();
+                Ad();
 
                 int chooise = 0;
                 try { chooise = int.Parse(Console.ReadLine()); }
