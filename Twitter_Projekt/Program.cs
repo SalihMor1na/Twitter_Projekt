@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
 
 
 namespace Twitter_Projekt
@@ -162,7 +163,7 @@ namespace Twitter_Projekt
             HandleLoginMenu();
         }
         // Skapa ett konto.
-        public static void CreateAccoount()
+        public static void CreateAccount()
         {
             Console.Write("Ange ett användarnamn: ");
             string username = Console.ReadLine();
@@ -175,6 +176,11 @@ namespace Twitter_Projekt
                 Console.Write("Ange ett lösenord: ");
                 password = Console.ReadLine();
             }
+
+            Console.Write("Ange din e-postadress: ");
+            string email = Console.ReadLine();
+            
+
 
             foreach (User user in users)
             {
@@ -227,6 +233,35 @@ namespace Twitter_Projekt
                 return JsonSerializer.Deserialize<List<User>>(jsonString) ?? new List<User>();
             }
             return new List<User>();
+        }
+        // Reklam dyker upp 5 sekunder
+        class Ad
+        {
+            static async Task Main(string[] args)
+            {
+                Random random = new Random();
+               
+                while (true)
+                {
+                    int randomInterval = random.Next(5000, 10000);
+                    await Task.Delay(randomInterval);
+
+                    ShowAd();
+
+
+                }
+            }
+            static void ShowAd()
+            {
+                Console.Clear();
+                Console.WriteLine("You are now watching an ad, the ad will end in 5 seconds...");
+
+                Thread.Sleep(5000);
+
+                Console.Clear();
+                Console.WriteLine("You can now continue using Twitter");
+
+            }
         }
 
         public static void HandleLoginMenu()
