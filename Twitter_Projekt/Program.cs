@@ -12,8 +12,6 @@ using System.Windows.Controls.Primitives;
 
 namespace Twitter_Projekt
 {
-
-
     class Program
     {
         public static List<string> listofposts = new List<string>();
@@ -249,7 +247,7 @@ namespace Twitter_Projekt
             string username = Console.ReadLine();
 
             Console.Write("Ange ett lösenord: ");
-            string password = Console.ReadLine();
+            string password = ReadPassword();
             while (password.Length < 6 || !password.Any(char.IsDigit) || !password.Any(char.IsLetter))
             {
                 Console.WriteLine("Lösenordet måste vara minst 6 tecken långt och innehålla både siffror och bokstäver, Försök igen!");
@@ -279,7 +277,7 @@ namespace Twitter_Projekt
             string username = Console.ReadLine();
 
             Console.Write("Ange ditt lösenord: ");
-            string password = Console.ReadLine();
+            string password = ReadPassword();
 
             foreach (User user in users)
             {
@@ -293,6 +291,35 @@ namespace Twitter_Projekt
 
             Console.WriteLine("Fel användarnamn eller lösenord.");
             return false;
+        }
+        public static string ReadPassword()
+        {
+            string password = "";
+            while (true)
+            {
+ 
+                var key = Console.ReadKey(intercept: true);
+
+                if (key.Key == ConsoleKey.Enter)
+                {
+                    Console.WriteLine("\n");
+                    break;
+                }
+                
+                else if (key.Key == ConsoleKey.Backspace && password.Length > 0)
+                {
+                    password = password.Substring(0, password.Length - 1);
+                    Console.Write("\b \b");
+                }
+       
+                else if (key.KeyChar != '\0')
+                {
+                    password += key.KeyChar;
+                    Console.Write("*"); 
+                }
+            }
+
+            return password;
         }
         public static void SaveUsers()
         {
