@@ -254,6 +254,8 @@ namespace Twitter_Projekt
                 Console.Write("Ange ett lösenord: ");
                 password = Console.ReadLine();
             }
+               Console.Write("Ange din e-postadress: ");
+                string email = Console.ReadLine();
 
             foreach (User user in users)
             {
