@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 
 namespace Twitter_Projekt
@@ -345,13 +346,12 @@ namespace Twitter_Projekt
         {
             Random random = new Random();
 
-            while (true)
-            {
+           
                 int randomInterval = random.Next(5000, 10000); // Ad interval between 5-10 seconds
                 await Task.Delay(randomInterval);
 
                 ShowAd();
-            }
+           
         }
 
         public static void ShowAd()
@@ -360,9 +360,12 @@ namespace Twitter_Projekt
             Console.WriteLine("You are now watching an ad, the ad will end in 5 seconds...");
 
             Thread.Sleep(5000); // Display ad for 5 seconds
-
+            
             Console.Clear();
             Console.WriteLine("You can now continue using Twitter");
+            HandleMenu();
+
+
         }
 
         public static void HandleLoginMenu()
@@ -380,7 +383,7 @@ namespace Twitter_Projekt
                 Console.WriteLine(" -----------------------");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.White;
-                Task adTask = Ad();
+                
                 try
                 {
                     loginChooise = int.Parse(Console.ReadLine());
@@ -419,11 +422,13 @@ namespace Twitter_Projekt
                 }
             }
         }
-
+        Task adTask = Ad();
+        Ad();
         public static void HandleMenu()
         {
             bool error = false;
             bool runProgram = true;
+            
             while (runProgram)
             {
 
@@ -435,6 +440,7 @@ namespace Twitter_Projekt
                     Console.WriteLine("Det måste vara ett nummer!");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
+                
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("Välj ett av följande alternativ");
@@ -468,7 +474,7 @@ namespace Twitter_Projekt
                 Console.ForegroundColor = ConsoleColor.White;
 
                 Console.WriteLine();
-                Ad();
+                
 
                 int chooise = 0;
                 try { chooise = int.Parse(Console.ReadLine()); }
