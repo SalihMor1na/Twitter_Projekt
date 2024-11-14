@@ -21,6 +21,7 @@ namespace Twitter_Projekt
         public static List<string> repostList = new List<string>();
 
         public static string loggedInUsername;
+        private static bool adShown = false;
 
         public static void Main(string[] args)
         {
@@ -346,12 +347,15 @@ namespace Twitter_Projekt
         {
             Random random = new Random();
 
-           
-                int randomInterval = random.Next(5000, 10000); // Ad interval between 5-10 seconds
+            if (!adShown) 
+            {
+                adShown = true;
+
+                int randomInterval = random.Next(5000, 10000); 
                 await Task.Delay(randomInterval);
 
                 ShowAd();
-           
+            }
         }
 
         public static void ShowAd()
@@ -359,7 +363,7 @@ namespace Twitter_Projekt
             Console.Clear();
             Console.WriteLine("You are now watching an ad, the ad will end in 5 seconds...");
 
-            Thread.Sleep(5000); // Display ad for 5 seconds
+            Thread.Sleep(5000); 
             
             Console.Clear();
             Console.WriteLine("You can now continue using Twitter");
