@@ -423,12 +423,14 @@ namespace Twitter_Projekt
             }
         }
         Task adTask = Ad();
-        Ad();
+        
         public static void HandleMenu()
         {
             bool error = false;
             bool runProgram = true;
-            
+            Ad();
+
+
             while (runProgram)
             {
 
