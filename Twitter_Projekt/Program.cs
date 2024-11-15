@@ -261,6 +261,12 @@ namespace Twitter_Projekt
             
             Console.WriteLine("Ange ditt förnamn: ");
             string firstname = Console.ReadLine();
+            while (string.IsNullOrEmpty(firstname))
+            {
+                Console.WriteLine("Förnamn får inte vara tomt. Ange ditt förnamn igen");
+                Console.Write("Ange ditt förnamn: ");
+                firstname = Console.ReadLine();
+            }
 
             Console.WriteLine("Ange ditt efternamn: ");
             string lastname = Console.ReadLine();
