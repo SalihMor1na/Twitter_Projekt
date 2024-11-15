@@ -258,7 +258,7 @@ namespace Twitter_Projekt
 
             Console.WriteLine("Ange din e-postadress: ");
             string email = Console.ReadLine();
-
+            
             Console.WriteLine("Ange ditt förnamn: ");
             string firstname = Console.ReadLine();
 
@@ -272,6 +272,12 @@ namespace Twitter_Projekt
             {
                 Console.WriteLine("Ogiltigt val. Välj 1 för Man, 2 för Kvinna eller 3 för annat");
                 genderInput = Console.ReadLine();
+            }
+            switch (genderInput)
+            {
+                case "1": gender = "Man"; break;
+                case "2": gender = "Kvinna"; break;
+                case "3": gender = "Annat"; break;
             }
 
 
