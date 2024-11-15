@@ -258,6 +258,13 @@ namespace Twitter_Projekt
 
             Console.WriteLine("Ange din e-postadress: ");
             string email = Console.ReadLine();
+            while (!IsValidEmail(email))
+            {
+                Console.WriteLine("Ogiltig e-postadress. Försök igen: ");
+                email = Console.ReadLine();
+            }
+            
+
             
             Console.WriteLine("Ange ditt förnamn: ");
             string firstname = Console.ReadLine();
@@ -294,16 +301,6 @@ namespace Twitter_Projekt
 
 
 
-            
-
-
-
-
-
-
-
-
-
             foreach (User user in users)
             {
                 if (user.Username == username)
@@ -319,6 +316,22 @@ namespace Twitter_Projekt
             SaveUsers();
             Console.WriteLine("Konto skapat!");
         }
+
+        public static bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+
         // Login
         public static bool Login()
         {
@@ -404,12 +417,12 @@ namespace Twitter_Projekt
         public static void ShowAd()
         {
             Console.Clear();
-            Console.WriteLine("You are now watching an ad, the ad will end in 5 seconds...");
+            Console.WriteLine("Du koller nu på en reklam, reklamen slutar om 5 sekunder...");
 
             Thread.Sleep(5000); 
             
             Console.Clear();
-            Console.WriteLine("You can now continue using Twitter");
+            Console.WriteLine("Du kan nu fortsätta använda din kostnadsfria Twitter");
             HandleMenu();
 
 
