@@ -258,6 +258,14 @@ namespace Twitter_Projekt
 
             Console.Write("Ange din e-postadress: ");
             string email = Console.ReadLine();
+
+            Console.Write("Ange ditt förnamn: ");
+            string firstname = Console.ReadLine();
+
+
+            
+
+
             
 
 
