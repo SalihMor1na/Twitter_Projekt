@@ -268,6 +268,11 @@ namespace Twitter_Projekt
             Console.WriteLine("Välj kön (1 - Man, 2 - Kvinna, 3 - Annat) : ");
             string genderInput = Console.ReadLine();
             string gender = "";
+            while (genderInput != "1" && genderInput != "2" && genderInput != "3")
+            {
+                Console.WriteLine("Ogiltigt val. Välj 1 för Man, 2 för Kvinna eller 3 för annat");
+                genderInput = Console.ReadLine();
+            }
 
 
 
