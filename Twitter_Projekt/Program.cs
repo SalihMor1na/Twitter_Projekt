@@ -256,20 +256,29 @@ namespace Twitter_Projekt
                 password = Console.ReadLine();
             }
 
-            Console.Write("Ange din e-postadress: ");
+            Console.WriteLine("Ange din e-postadress: ");
             string email = Console.ReadLine();
 
-            Console.Write("Ange ditt förnamn: ");
+            Console.WriteLine("Ange ditt förnamn: ");
             string firstname = Console.ReadLine();
 
-            Console.Write("Ange ditt efternamn: ");
+            Console.WriteLine("Ange ditt efternamn: ");
             string lastname = Console.ReadLine();
 
+            Console.WriteLine("Välj kön (1 - Man, 2 - Kvinna, 3 - Annat) : ");
+            string genderInput = Console.ReadLine();
+            string gender = "";
+
+
 
             
 
 
-            
+
+
+
+
+
 
 
             foreach (User user in users)
