@@ -270,6 +270,12 @@ namespace Twitter_Projekt
 
             Console.WriteLine("Ange ditt efternamn: ");
             string lastname = Console.ReadLine();
+            while (string.IsNullOrEmpty(lastname))
+            {
+                Console.WriteLine("Efternamn får inte vara tomt. Ange ditt förnamn igen");
+                Console.Write("Ange ditt efternamn: ");
+                lastname = Console.ReadLine();
+            }
 
             Console.WriteLine("Välj kön (1 - Man, 2 - Kvinna, 3 - Annat) : ");
             string genderInput = Console.ReadLine();
