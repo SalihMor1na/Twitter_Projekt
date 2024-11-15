@@ -262,6 +262,9 @@ namespace Twitter_Projekt
             Console.Write("Ange ditt förnamn: ");
             string firstname = Console.ReadLine();
 
+            Console.Write("Ange ditt efternamn: ");
+            string lastname = Console.ReadLine();
+
 
             
 
