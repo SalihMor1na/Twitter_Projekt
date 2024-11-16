@@ -21,7 +21,7 @@ namespace Twitter_Projekt
         public static List<string> repostList = new List<string>();
 
         public static string loggedInUsername;
-        private static bool adShown = false;
+        public static bool adShown = false;
 
         public static void Main(string[] args)
         {
@@ -29,35 +29,8 @@ namespace Twitter_Projekt
             HandleLoginMenu();
             HandleMenu();
         }
+
        
-       
-        // Reklam dyker upp 5 sekunder
-        public static async Task Ad()
-        {
-            Random random = new Random();
-
-            if (!adShown) 
-            {
-                adShown = true;
-
-                int randomInterval = random.Next(5000, 10000); 
-                await Task.Delay(randomInterval);
-
-                ShowAd();
-            }
-        }
-
-        public static void ShowAd()
-        {
-            Console.Clear();
-            Console.WriteLine("Du kollar nu på en reklam, reklamen slutar om 5 sekunder...");
-
-            Thread.Sleep(5000); 
-            
-            Console.Clear();
-            Console.WriteLine("Du kan nu fortsätta använda din kostnadsfria Twitter");
-            HandleMenu();
-        }
         // Alternativ 11 - Användarinställningar
         public static void HandleSettings()
         {
@@ -169,13 +142,13 @@ namespace Twitter_Projekt
                 }
             }
         }
-        Task adTask = Ad();
+       
         
         public static void HandleMenu()
         {
             bool error = false;
             bool runProgram = true;
-            Ad();
+            AdManagment.Ad();
 
 
             while (runProgram)
