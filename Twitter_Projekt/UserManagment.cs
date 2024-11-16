@@ -199,5 +199,27 @@ namespace Twitter_Projekt
                 }
             }
         }
+
+        public static void Theme()
+        {
+            Console.WriteLine("Vill du sätta på mörkt läge eller vill du ha ljust");
+            Console.WriteLine("1: Mörkt");
+            Console.WriteLine("2: Ljust");
+            int choiceTheme = int.Parse(Console.ReadLine());
+
+            if (choiceTheme == 1)
+            {
+                Console.WriteLine("Temat är nu mörkt!");
+                Console.BackgroundColor = ConsoleColor.Black;
+            }
+            else if (choiceTheme == 2)
+            {
+
+                Console.WriteLine("Temat är nu ljust!");
+                Console.BackgroundColor = ConsoleColor.Gray;
+
+            }
+        }
+
     }
 }

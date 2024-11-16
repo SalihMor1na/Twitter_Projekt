@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Windows;
 
 namespace Twitter_Projekt
 {
@@ -16,9 +17,12 @@ namespace Twitter_Projekt
                 Console.WriteLine("| 1: Skapa Konto        |");
                 Console.WriteLine(" -----------------------");
                 Console.WriteLine("| 2: Logga in           |");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("| 3: Inställningar      |");
+                Console.WriteLine(" -----------------------");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 3: Avsluta Programmet |");
+                Console.WriteLine("| 4: Avsluta Programmet |");
                 Console.WriteLine(" -----------------------");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.White;
@@ -47,6 +51,11 @@ namespace Twitter_Projekt
                     }
                 }
                 else if (LoginManagment.loginChooise == 3)
+                {
+                    UserManagment.Theme();
+                    Console.Clear();
+                }
+                else if (LoginManagment.loginChooise == 4)
                 {
 
                     Console.WriteLine("Programmet avslutas nu.");
