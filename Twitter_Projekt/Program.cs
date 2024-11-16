@@ -32,67 +32,7 @@ namespace Twitter_Projekt
 
         }
         // Alternativ 1 - Skapa Post
-        public static void CreatePost()
-        {
-            Console.WriteLine("Vad vill du dela med dig utav?");
-            string post = Console.ReadLine();
-            listofposts.Add(post);
-        }
-
-        // Alternativ 2 - Visa alla posts.
-        public static void ShowAllPost()
-        {
-            Console.WriteLine();
-
-            if (listofposts.Count == 0)
-            {
-                Console.WriteLine("Du har inga inlägg att visa!");
-            }
-            else
-            {
-                Console.WriteLine("Här kommer alla inlägg");
-                int i = 1;
-                foreach (string post in listofposts)
-                {
-                    int postLength = post.Length + 6;
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine(new string('-', postLength));
-
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine($"| {i}.{post} |");
-
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine(new string('-', postLength));
-                    Console.ForegroundColor = ConsoleColor.White;
-                    i++;
-                }
-            }
-        }
-        // Alternativ 3 - Ta bort tweet.
-        public static void DeleteTweet()
-        {
-            Console.WriteLine("Skriv vilket inlägg du vill ta bort");
-            ShowAllPost();
-            int removePost = 0;
-            try
-            {
-                removePost = int.Parse(Console.ReadLine()) - 1;
-                if (removePost > listofposts.Count || removePost < 0)
-                {
-                    Console.WriteLine("Det inlägget finns ej! försök igen");
-                }
-            }
-            catch
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Det måste vara ett nummer!");
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-
-            listofposts.RemoveAt(removePost);
-            Console.WriteLine($"Du tog bort inlägg nummer {removePost + 1}");
-        }
-
+       
         // Alternativ 4 - Sök efter användare.
         public static void SearchForUSer()
         {
@@ -112,57 +52,7 @@ namespace Twitter_Projekt
         }
 
         //Alternativ 5 - Reposta en tweet.
-        public static void Reposta()
-        {
-            Console.WriteLine("Vilket inlägg vill du reposta");
-            ShowAllPost();
-            bool run = true;
-            while (run)
-            {
-
-                try { repostChoice = int.Parse(Console.ReadLine()) - 1; }
-                catch
-                {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Det måste vara ett av följade nummer!");
-                    try { repostChoice = int.Parse(Console.ReadLine()) - 1; }
-                    catch
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("Det måste vara ett av följade nummer!");
-                        repostChoice = int.Parse(Console.ReadLine()) - 1;
-                        Console.ForegroundColor = ConsoleColor.White;
-                    }
-                    Console.ForegroundColor = ConsoleColor.White;
-                }
-
-                if (repostChoice >= 0 && repostChoice < listofposts.Count)
-                {
-                    run = false;
-                }
-            }
-
-            var saveRepost = listofposts[repostChoice];
-            repostList.Add(saveRepost);
-            Console.WriteLine($"Du har nu repostat {listofposts[repostChoice]}");
-
-            Console.WriteLine("Vill du se alla dina repost svara med Ja/Nej");
-            string showRepostChoice = Console.ReadLine().ToLower();
-
-
-            if (showRepostChoice == "ja")
-            {
-                foreach (var item in repostList)
-                {
-                    Console.WriteLine(item);
-                }
-            }
-            else if (repostList == null)
-            {
-                Console.WriteLine("Finns inga repost");
-            }
-
-        }
+      
 
         //Alternativ 6 - Skickar meddelande till en användare.
         public static void SendDirectMessage()
@@ -194,25 +84,6 @@ namespace Twitter_Projekt
             }
         }
 
-        //Alternativ 8
-       
-        //Alternativ 9 
-        public static void EditPost()
-        {
-            Console.WriteLine("Ange numret på inlägget du vill redigera:");
-            ShowAllPost();
-            if (int.TryParse(Console.ReadLine(), out int postNumber) && postNumber > 0 && postNumber <= listofposts.Count)
-            {
-                Console.Write("Skriv din nya text för inlägget: ");
-                listofposts[postNumber - 1] = Console.ReadLine();
-                Console.WriteLine("Inlägget har uppdaterats.");
-            }
-            else
-            {
-                Console.WriteLine("Ogiltigt nummer, försök igen.");
-            }
-        }
-        // Skapa ett konto.
         public static void CreateAccount()
         {
             Console.Write("Ange ett användarnamn: ");
@@ -300,11 +171,6 @@ namespace Twitter_Projekt
                 return false;
             }
         }
-
-
-
-        // Login
-       
         
         public static void SaveUsers()
         {
@@ -404,18 +270,9 @@ namespace Twitter_Projekt
                         currentUser.Password = newPassword;
                         Console.WriteLine("Lösenordet har ändrats.");
                         break;
-
                 }
-
-
             }
         }
-
-
-        
-
-
-
         public static void HandleLoginMenu()
         {
             bool isRunnning = true;
@@ -537,13 +394,13 @@ namespace Twitter_Projekt
                 switch (chooise)
                 {
                     case 1:
-                        CreatePost();
+                        PostManagment.CreatePost();
                         break;
                     case 2:
-                        ShowAllPost();
+                        PostManagment.ShowAllPost();
                         break;
                     case 3:
-                        DeleteTweet();
+                        PostManagment.DeleteTweet();
                         break;
                     case 4:
                         SearchForUSer();
@@ -551,7 +408,7 @@ namespace Twitter_Projekt
                     case 5:
                         if (listofposts.Count >= 1)
                         {
-                            Reposta();
+                            PostManagment.Reposta();
                         }
                         else if (listofposts.Count < 1)
                         {
@@ -568,7 +425,7 @@ namespace Twitter_Projekt
                         LoginManagment.Logout();
                         break;
                     case 9:
-                        EditPost();
+                        PostManagment.EditPost();
                         break;
                     case 10:
                         runProgram = false;
