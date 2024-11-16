@@ -468,6 +468,20 @@ namespace Twitter_Projekt
                         }
                         break;
 
+                        case "2":
+
+                        Console.Write("Ange ditt nya lösenord: ");
+                        string newPassword = Console.ReadLine();
+
+                        while (newPassword.Length < 6 || !newPassword.Any(char.IsDigit) || !newPassword.Any(char.IsLetter))
+                        {
+                            Console.WriteLine("Lösenordet måste vara minst 6 tecken långt och innehålla både siffror och bokstäver. Försök igen: ");
+                            newPassword = ReadPassword();
+                        }
+                        currentUser.Password = newPassword;
+                        Console.WriteLine("Lösenordet har ändrats.");
+                        break;
+
                 }
 
 
