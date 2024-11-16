@@ -195,18 +195,7 @@ namespace Twitter_Projekt
         }
 
         //Alternativ 8
-        public static void Logout()
-        {
-            Console.Write("Är du säker på att du vill logga ut? (Ja/Nej): ");
-            if (Console.ReadLine().Trim().ToLower() == "ja")
-            {
-                Console.Clear();
-                loggedInUsername = null;
-                Console.WriteLine("Du har loggat ut.");
-                Thread.Sleep(2000);
-                HandleLoginMenu();
-            }
-        }
+       
         //Alternativ 9 
         public static void EditPost()
         {
@@ -230,7 +219,7 @@ namespace Twitter_Projekt
             string username = Console.ReadLine();
 
             Console.Write("Ange ett lösenord: ");
-            string password = ReadPassword();
+            string password = LoginManagment.ReadPassword();
             while (password.Length < 6 || !password.Any(char.IsDigit) || !password.Any(char.IsLetter))
             {
                 Console.WriteLine("Lösenordet måste vara minst 6 tecken långt och innehålla både siffror och bokstäver, Försök igen!");
@@ -315,56 +304,8 @@ namespace Twitter_Projekt
 
 
         // Login
-        public static bool Login()
-        {
-            Console.Write("Ange ditt användarnamn: ");
-            string username = Console.ReadLine();
-
-            Console.Write("Ange ditt lösenord: ");
-            string password = ReadPassword();
-
-            foreach (User user in users)
-            {
-                if (user.Username == username && user.Password == password)
-                {
-                    loggedInUsername = username;
-                    Console.WriteLine("Inloggning lyckades!");
-                    return true;
-                }
-            }
-
-            Console.WriteLine("Fel användarnamn eller lösenord.");
-            return false;
-        }
-        public static string ReadPassword()
-        {
-            string password = "";
-            while (true)
-            {
- 
-                var key = Console.ReadKey(intercept: true);
-
-                if (key.Key == ConsoleKey.Enter)
-                {
-                    Console.WriteLine("\n");
-                    break;
-                }
-                
-                else if (key.Key == ConsoleKey.Backspace && password.Length > 0)
-                {
-                    password = password.Substring(0, password.Length - 1);
-                    Console.Write("\b \b");
-                }
        
-                else if (key.KeyChar != '\0')
-                {
-                    password += key.KeyChar;
-                    Console.Write("*"); 
-                }
-            }
-
-            return password;
-        }
+        
         public static void SaveUsers()
         {
             string jsonString = JsonSerializer.Serialize(users);
@@ -458,7 +399,7 @@ namespace Twitter_Projekt
                         while (newPassword.Length < 6 || !newPassword.Any(char.IsDigit) || !newPassword.Any(char.IsLetter))
                         {
                             Console.WriteLine("Lösenordet måste vara minst 6 tecken långt och innehålla både siffror och bokstäver. Försök igen: ");
-                            newPassword = ReadPassword();
+                            newPassword = LoginManagment.ReadPassword();
                         }
                         currentUser.Password = newPassword;
                         Console.WriteLine("Lösenordet har ändrats.");
@@ -506,7 +447,7 @@ namespace Twitter_Projekt
                 }
                 else if (loginChooise == 2)
                 {
-                    if (Login())
+                    if (LoginManagment.Login())
                     {
                         Console.WriteLine($"Välkommen, {loggedInUsername}!");
                         Thread.Sleep(2000);
@@ -624,7 +565,7 @@ namespace Twitter_Projekt
                         SendDirectMessage();
                         break;
                     case 8:
-                        Logout();
+                        LoginManagment.Logout();
                         break;
                     case 9:
                         EditPost();
