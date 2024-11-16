@@ -15,7 +15,7 @@ namespace Twitter_Projekt
             Console.Write("Ange ditt lösenord: ");
             string password = ReadPassword();
 
-            foreach (User user in Program.users)
+            foreach (UserManagment user in Program.users)
             {
                 if (user.Username == username && user.Password == password)
                 {
@@ -41,8 +41,6 @@ namespace Twitter_Projekt
                 Program.HandleLoginMenu();
             }
         }
-
-
         public static string ReadPassword()
         {
             string password = "";

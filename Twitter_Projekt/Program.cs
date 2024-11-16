@@ -15,7 +15,7 @@ namespace Twitter_Projekt
     class Program
     {
         public static List<string> listofposts = new List<string>();
-        public static List<User> users = LoadUsers();
+        public static List<UserManagment> users = LoadUsers();
         public static int loginChooise;
         public static int repostChoice;
         public static List<string> repostList = new List<string>();
@@ -28,38 +28,13 @@ namespace Twitter_Projekt
             LoadUsers();
             HandleLoginMenu();
             HandleMenu();
-
-
         }
-        // Alternativ 1 - Skapa Post
        
-        // Alternativ 4 - Sök efter användare.
-        public static void SearchForUSer()
-        {
-            Console.Write("Ange användarnamnet på personen du vill följa: ");
-            string userToFollow = Console.ReadLine();
-
-            User user = users.FirstOrDefault(u => u.Username.Equals(userToFollow, StringComparison.OrdinalIgnoreCase));
-            if (user != null)
-            {
-                user.Followers.Add(loggedInUsername);
-                Console.WriteLine($"Du följer nu {userToFollow}.");
-            }
-            else
-            {
-                Console.WriteLine("Användaren finns inte.");
-            }
-        }
-
-        //Alternativ 5 - Reposta en tweet.
-      
-
-        //Alternativ 6 - Skickar meddelande till en användare.
         public static void SendDirectMessage()
         {
             Console.Write("Ange mottagarens användarnamn: ");
             string recipient = Console.ReadLine();
-            User user = users.FirstOrDefault(u => u.Username == recipient);
+            UserManagment user = users.FirstOrDefault(u => u.Username == recipient);
             if (user != null)
             {
                 Console.Write("Skriv ditt meddelande: ");
@@ -72,120 +47,20 @@ namespace Twitter_Projekt
             }
         }
 
-        // Alternativ 7 - Visa följare och personer du följer.
-        public static void ShowUserInfo()
-        {
-            User user = users.FirstOrDefault(u => u.Username == loggedInUsername);
-            if (user != null)
-            {
-                int followersCount = user.Followers.Count;
-                int followingCount = users.Count(u => u.Followers.Contains(loggedInUsername));
-                Console.WriteLine($"Du har {followersCount} följare och följer {followingCount} person.");
-            }
-        }
-
-        public static void CreateAccount()
-        {
-            Console.Write("Ange ett användarnamn: ");
-            string username = Console.ReadLine();
-
-            Console.Write("Ange ett lösenord: ");
-            string password = LoginManagment.ReadPassword();
-            while (password.Length < 6 || !password.Any(char.IsDigit) || !password.Any(char.IsLetter))
-            {
-                Console.WriteLine("Lösenordet måste vara minst 6 tecken långt och innehålla både siffror och bokstäver, Försök igen!");
-                Console.Write("Ange ett lösenord: ");
-                password = Console.ReadLine();
-            }
-
-            Console.WriteLine("Ange din e-postadress: ");
-            string email = Console.ReadLine();
-            while (!IsValidEmail(email))
-            {
-                Console.WriteLine("Ogiltig e-postadress. Försök igen: ");
-                email = Console.ReadLine();
-            }
-            
-
-            
-            Console.WriteLine("Ange ditt förnamn: ");
-            string firstname = Console.ReadLine();
-            while (string.IsNullOrEmpty(firstname))
-            {
-                Console.WriteLine("Förnamn får inte vara tomt. Ange ditt förnamn igen");
-                Console.Write("Ange ditt förnamn: ");
-                firstname = Console.ReadLine();
-            }
-
-            Console.WriteLine("Ange ditt efternamn: ");
-            string lastname = Console.ReadLine();
-            while (string.IsNullOrEmpty(lastname))
-            {
-                Console.WriteLine("Efternamn får inte vara tomt. Ange ditt förnamn igen");
-                Console.Write("Ange ditt efternamn: ");
-                lastname = Console.ReadLine();
-            }
-
-            Console.WriteLine("Välj kön (1 - Man, 2 - Kvinna, 3 - Annat) : ");
-            string genderInput = Console.ReadLine();
-            string gender = "";
-            while (genderInput != "1" && genderInput != "2" && genderInput != "3")
-            {
-                Console.WriteLine("Ogiltigt val. Välj 1 för Man, 2 för Kvinna eller 3 för annat");
-                genderInput = Console.ReadLine();
-            }
-            switch (genderInput)
-            {
-                case "1": gender = "Man"; break;
-                case "2": gender = "Kvinna"; break;
-                case "3": gender = "Annat"; break;
-            }
-
-
-
-            foreach (User user in users)
-            {
-                if (user.Username == username)
-                {
-                    Console.WriteLine("Användarnamnet är upptaget. Försök igen.");
-                    return;
-                }
-            }
-
-            User newUser = new User { Username = username, Password = password };
-            users.Add(newUser);
-
-            SaveUsers();
-            Console.WriteLine("Konto skapat!");
-        }
-
-        public static bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        
         public static void SaveUsers()
         {
             string jsonString = JsonSerializer.Serialize(users);
             File.WriteAllText("users.json", jsonString);
         }
 
-        static List<User> LoadUsers()
+        static List<UserManagment> LoadUsers()
         {
             if (File.Exists("users.json"))
             {
                 string jsonString = File.ReadAllText("users.json");
-                return JsonSerializer.Deserialize<List<User>>(jsonString) ?? new List<User>();
+                return JsonSerializer.Deserialize<List<UserManagment>>(jsonString) ?? new List<UserManagment>();
             }
-            return new List<User>();
+            return new List<UserManagment>();
         }
         // Reklam dyker upp 5 sekunder
         public static async Task Ad()
@@ -213,13 +88,11 @@ namespace Twitter_Projekt
             Console.Clear();
             Console.WriteLine("Du kan nu fortsätta använda din kostnadsfria Twitter");
             HandleMenu();
-
-
         }
         // Alternativ 11 - Användarinställningar
         public static void HandleSettings()
         {
-            User currentUser = users.FirstOrDefault(u => u.Username == loggedInUsername);
+            UserManagment currentUser = users.FirstOrDefault(u => u.Username == loggedInUsername);
             if (currentUser == null)
             {
                 Console.WriteLine("Något gick fel. Användaren kunde inte hittas");
@@ -300,7 +173,7 @@ namespace Twitter_Projekt
 
                 if (loginChooise == 1)
                 {
-                    CreateAccount();
+                    UserManagment.CreateAccount();
                 }
                 else if (loginChooise == 2)
                 {
@@ -390,7 +263,6 @@ namespace Twitter_Projekt
                     error = true;
                 }
 
-
                 switch (chooise)
                 {
                     case 1:
@@ -403,7 +275,7 @@ namespace Twitter_Projekt
                         PostManagment.DeleteTweet();
                         break;
                     case 4:
-                        SearchForUSer();
+                        UserManagment.SearchForUSer();
                         break;
                     case 5:
                         if (listofposts.Count >= 1)
@@ -416,7 +288,7 @@ namespace Twitter_Projekt
                         }
                         break;
                     case 7:
-                        ShowUserInfo();
+                        UserManagment.ShowUserInfo();
                         break;
                     case 6:
                         SendDirectMessage();
