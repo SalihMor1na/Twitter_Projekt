@@ -13,7 +13,7 @@ namespace Twitter_Projekt
         public string Password { get; set; }
         public List<string> Followers { get; set; } = new List<string>();
 
-        public static List<UserManagment> users = UserManagment.LoadUsers();
+        public static List<UserManagment> users =LoadUsers();
         public static void CreateAccount()
         {
             Console.Write("Ange ett användarnamn: ");
@@ -73,7 +73,7 @@ namespace Twitter_Projekt
 
 
 
-            foreach (UserManagment user in UserManagment.users)
+            foreach (UserManagment user in users)
             {
                 if (user.Username == username)
                 {
@@ -83,7 +83,7 @@ namespace Twitter_Projekt
             }
 
             UserManagment newUser = new UserManagment { Username = username, Password = password };
-            UserManagment.users.Add(newUser);
+            users.Add(newUser);
 
             SaveUsers();
             Console.WriteLine("Konto skapat!");
@@ -103,11 +103,11 @@ namespace Twitter_Projekt
         }
         public static void ShowUserInfo()
         {
-            UserManagment user = UserManagment.users.FirstOrDefault(u => u.Username == LoginManagment.loggedInUsername);
+            UserManagment user = users.FirstOrDefault(u => u.Username == LoginManagment.loggedInUsername);
             if (user != null)
             {
                 int followersCount = user.Followers.Count;
-                int followingCount = UserManagment.users.Count(u => u.Followers.Contains(LoginManagment.loggedInUsername));
+                int followingCount = users.Count(u => u.Followers.Contains(LoginManagment.loggedInUsername));
                 Console.WriteLine($"Du har {followersCount} följare och följer {followingCount} person.");
             }
         }
@@ -116,7 +116,7 @@ namespace Twitter_Projekt
             Console.Write("Ange användarnamnet på personen du vill följa: ");
             string userToFollow = Console.ReadLine();
 
-            UserManagment user = UserManagment.users.FirstOrDefault(u => u.Username.Equals(userToFollow, StringComparison.OrdinalIgnoreCase));
+            UserManagment user = users.FirstOrDefault(u => u.Username.Equals(userToFollow, StringComparison.OrdinalIgnoreCase));
             if (user != null)
             {
                 user.Followers.Add(LoginManagment.loggedInUsername);
@@ -130,7 +130,7 @@ namespace Twitter_Projekt
 
         public static void SaveUsers()
         {
-            string jsonString = JsonSerializer.Serialize(UserManagment.users);
+            string jsonString = JsonSerializer.Serialize(users);
             File.WriteAllText("users.json", jsonString);
         }
 
@@ -143,6 +143,61 @@ namespace Twitter_Projekt
             }
             return new List<UserManagment>();
         }
+        public static void HandleSettings()
+        {
+            UserManagment currentUser = users.FirstOrDefault(u => u.Username == LoginManagment.loggedInUsername);
+            if (currentUser == null)
+            {
+                Console.WriteLine("Något gick fel. Användaren kunde inte hittas");
+                return;
+            }
 
+            bool inSettings = true;
+
+            while (inSettings)
+            {
+                Console.Clear();
+                Console.WriteLine("INSTÄLLNINGAR");
+                Console.WriteLine("1. Ändra ditt användarnamn");
+                Console.WriteLine("2. Ändra ditt lösenord");
+                Console.WriteLine("3. Gå tillbaka till huvudmenyn");
+                Console.Write("Välj ett alternativ: ");
+
+                string choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "1":
+
+                        Console.Write("Ange ditt nya användarnamn: ");
+                        string newUsername = Console.ReadLine();
+
+                        if (users.Any(u => u.Username.Equals(newUsername, StringComparison.OrdinalIgnoreCase)))
+                        {
+                            Console.WriteLine("Det angivna användarnamnet är upptaget. Försök med ett annat användarnamn");
+                        }
+                        else
+                        {
+                            currentUser.Username = newUsername;
+                            LoginManagment.loggedInUsername = newUsername;
+                            Console.WriteLine("Användarnamnet har ändrats!");
+                        }
+                        break;
+
+                    case "2":
+
+                        Console.Write("Ange ditt nya lösenord: ");
+                        string newPassword = Console.ReadLine();
+
+                        while (newPassword.Length < 6 || !newPassword.Any(char.IsDigit) || !newPassword.Any(char.IsLetter))
+                        {
+                            Console.WriteLine("Lösenordet måste vara minst 6 tecken långt och innehålla både siffror och bokstäver. Försök igen: ");
+                            newPassword = LoginManagment.ReadPassword();
+                        }
+                        currentUser.Password = newPassword;
+                        Console.WriteLine("Lösenordet har ändrats.");
+                        break;
+                }
+            }
+        }
     }
 }

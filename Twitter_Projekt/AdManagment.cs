@@ -33,7 +33,7 @@ namespace Twitter_Projekt
 
             Console.Clear();
             Console.WriteLine("Du kan nu fortsätta använda din kostnadsfria Twitter");
-            Program.HandleMenu();
+            MenuManagment.HandleMenu();
         }
         Task adTask = Ad();
     }

@@ -42,7 +42,7 @@ namespace Twitter_Projekt
                 loggedInUsername = null;
                 Console.WriteLine("Du har loggat ut.");
                 Thread.Sleep(2000);
-                Program.HandleLoginMenu();
+                MenuManagment.HandleLoginMenu();
             }
         }
         public static string ReadPassword()
