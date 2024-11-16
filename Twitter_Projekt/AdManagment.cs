@@ -8,13 +8,15 @@ namespace Twitter_Projekt
 {
     internal class AdManagment
     {
+        public static bool adShown = false;
+
         public static async Task Ad()
         {
             Random random = new Random();
 
-            if (!Program.adShown)
+            if (!adShown)
             {
-                Program.adShown = true;
+                adShown = true;
 
                 int randomInterval = random.Next(5000, 10000);
                 await Task.Delay(randomInterval);
@@ -22,7 +24,6 @@ namespace Twitter_Projekt
                 ShowAd();
             }
         }
-
         public static void ShowAd()
         {
             Console.Clear();

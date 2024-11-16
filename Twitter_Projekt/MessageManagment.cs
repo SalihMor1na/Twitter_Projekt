@@ -11,7 +11,7 @@ namespace Twitter_Projekt
         {
             Console.Write("Ange mottagarens användarnamn: ");
             string recipient = Console.ReadLine();
-            UserManagment user = Program.users.FirstOrDefault(u => u.Username == recipient);
+            UserManagment user = UserManagment.users.FirstOrDefault(u => u.Username == recipient);
             if (user != null)
             {
                 Console.Write("Skriv ditt meddelande: ");

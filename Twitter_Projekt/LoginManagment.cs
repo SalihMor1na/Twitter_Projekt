@@ -7,6 +7,10 @@ namespace Twitter_Projekt
 {
     internal class LoginManagment
     {
+        public static int loginChooise;
+        public static string loggedInUsername;
+
+
         public static bool Login()
         {
             Console.Write("Ange ditt användarnamn: ");
@@ -15,11 +19,11 @@ namespace Twitter_Projekt
             Console.Write("Ange ditt lösenord: ");
             string password = ReadPassword();
 
-            foreach (UserManagment user in Program.users)
+            foreach (UserManagment user in UserManagment.users)
             {
                 if (user.Username == username && user.Password == password)
                 {
-                    Program.loggedInUsername = username;
+                    loggedInUsername = username;
                     Console.WriteLine("Inloggning lyckades!");
                     return true;
                 }
@@ -35,7 +39,7 @@ namespace Twitter_Projekt
             if (Console.ReadLine().Trim().ToLower() == "ja")
             {
                 Console.Clear();
-                Program.loggedInUsername = null;
+                loggedInUsername = null;
                 Console.WriteLine("Du har loggat ut.");
                 Thread.Sleep(2000);
                 Program.HandleLoginMenu();

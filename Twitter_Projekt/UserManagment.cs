@@ -13,6 +13,7 @@ namespace Twitter_Projekt
         public string Password { get; set; }
         public List<string> Followers { get; set; } = new List<string>();
 
+        public static List<UserManagment> users = UserManagment.LoadUsers();
         public static void CreateAccount()
         {
             Console.Write("Ange ett användarnamn: ");
@@ -72,7 +73,7 @@ namespace Twitter_Projekt
 
 
 
-            foreach (UserManagment user in Program.users)
+            foreach (UserManagment user in UserManagment.users)
             {
                 if (user.Username == username)
                 {
@@ -82,7 +83,7 @@ namespace Twitter_Projekt
             }
 
             UserManagment newUser = new UserManagment { Username = username, Password = password };
-            Program.users.Add(newUser);
+            UserManagment.users.Add(newUser);
 
             SaveUsers();
             Console.WriteLine("Konto skapat!");
@@ -102,11 +103,11 @@ namespace Twitter_Projekt
         }
         public static void ShowUserInfo()
         {
-            UserManagment user = Program.users.FirstOrDefault(u => u.Username == Program.loggedInUsername);
+            UserManagment user = UserManagment.users.FirstOrDefault(u => u.Username == LoginManagment.loggedInUsername);
             if (user != null)
             {
                 int followersCount = user.Followers.Count;
-                int followingCount = Program.users.Count(u => u.Followers.Contains(Program.loggedInUsername));
+                int followingCount = UserManagment.users.Count(u => u.Followers.Contains(LoginManagment.loggedInUsername));
                 Console.WriteLine($"Du har {followersCount} följare och följer {followingCount} person.");
             }
         }
@@ -115,10 +116,10 @@ namespace Twitter_Projekt
             Console.Write("Ange användarnamnet på personen du vill följa: ");
             string userToFollow = Console.ReadLine();
 
-            UserManagment user = Program.users.FirstOrDefault(u => u.Username.Equals(userToFollow, StringComparison.OrdinalIgnoreCase));
+            UserManagment user = UserManagment.users.FirstOrDefault(u => u.Username.Equals(userToFollow, StringComparison.OrdinalIgnoreCase));
             if (user != null)
             {
-                user.Followers.Add(Program.loggedInUsername);
+                user.Followers.Add(LoginManagment.loggedInUsername);
                 Console.WriteLine($"Du följer nu {userToFollow}.");
             }
             else
@@ -129,7 +130,7 @@ namespace Twitter_Projekt
 
         public static void SaveUsers()
         {
-            string jsonString = JsonSerializer.Serialize(Program.users);
+            string jsonString = JsonSerializer.Serialize(UserManagment.users);
             File.WriteAllText("users.json", jsonString);
         }
 

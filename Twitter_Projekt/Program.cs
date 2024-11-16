@@ -14,15 +14,6 @@ namespace Twitter_Projekt
 {
     class Program
     {
-        public static List<string> listofposts = new List<string>();
-        public static List<UserManagment> users = UserManagment.LoadUsers();
-        public static int loginChooise;
-        public static int repostChoice;
-        public static List<string> repostList = new List<string>();
-
-        public static string loggedInUsername;
-        public static bool adShown = false;
-
         public static void Main(string[] args)
         {
             UserManagment.LoadUsers();
@@ -30,11 +21,10 @@ namespace Twitter_Projekt
             HandleMenu();
         }
 
-       
         // Alternativ 11 - Användarinställningar
         public static void HandleSettings()
         {
-            UserManagment currentUser = users.FirstOrDefault(u => u.Username == loggedInUsername);
+            UserManagment currentUser = UserManagment.users.FirstOrDefault(u => u.Username == LoginManagment.loggedInUsername);
             if (currentUser == null)
             {
                 Console.WriteLine("Något gick fel. Användaren kunde inte hittas");
@@ -60,14 +50,14 @@ namespace Twitter_Projekt
                         Console.Write("Ange ditt nya användarnamn: ");
                         string newUsername = Console.ReadLine();
 
-                        if (users.Any(u => u.Username.Equals(newUsername, StringComparison.OrdinalIgnoreCase)))
+                        if (UserManagment.users.Any(u => u.Username.Equals(newUsername, StringComparison.OrdinalIgnoreCase)))
                         {
                             Console.WriteLine("Det angivna användarnamnet är upptaget. Försök med ett annat användarnamn");
                         }
                         else
                         {
                             currentUser.Username = newUsername;
-                            loggedInUsername = newUsername;
+                            LoginManagment.loggedInUsername = newUsername;
                             Console.WriteLine("Användarnamnet har ändrats!");
                         }
                         break;
@@ -106,28 +96,28 @@ namespace Twitter_Projekt
                 
                 try
                 {
-                    loginChooise = int.Parse(Console.ReadLine());
+                    LoginManagment.loginChooise = int.Parse(Console.ReadLine());
                 }
                 catch
                 {
                     Console.WriteLine("Det måste vara en siffra");
                 }
 
-                if (loginChooise == 1)
+                if (LoginManagment.loginChooise == 1)
                 {
                     UserManagment.CreateAccount();
                 }
-                else if (loginChooise == 2)
+                else if (LoginManagment.loginChooise == 2)
                 {
                     if (LoginManagment.Login())
                     {
-                        Console.WriteLine($"Välkommen, {loggedInUsername}!");
+                        Console.WriteLine($"Välkommen, {LoginManagment.loggedInUsername}!");
                         Thread.Sleep(2000);
                         isRunnning = false;
                         
                     }
                 }
-                else if (loginChooise == 3)
+                else if (LoginManagment.loginChooise == 3)
                 {
 
                     Console.WriteLine("Programmet avslutas nu.");
@@ -220,11 +210,11 @@ namespace Twitter_Projekt
                         UserManagment.SearchForUSer();
                         break;
                     case 5:
-                        if (listofposts.Count >= 1)
+                        if (PostManagment.listofposts.Count >= 1)
                         {
                             PostManagment.Reposta();
                         }
-                        else if (listofposts.Count < 1)
+                        else if (PostManagment.listofposts.Count < 1)
                         {
                             Console.WriteLine("finns inga inlägg att reposta!");
                         }
