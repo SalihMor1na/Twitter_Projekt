@@ -115,9 +115,12 @@ namespace Twitter_Projekt
                 Console.WriteLine(" -----------------------");
                 Console.WriteLine("|9: Redigera inlägg     |");
                 Console.WriteLine(" -----------------------");
+                Console.WriteLine(" -----------------------");
+                Console.WriteLine("|10: Lika/dislika inlägg |");
+                Console.WriteLine(" -----------------------");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(" -----------------------");
-                Console.WriteLine("| 10: Avsluta programmet |");
+                Console.WriteLine("| 11: Avsluta programmet |");
                 Console.WriteLine(" -----------------------");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.White;
@@ -169,6 +172,9 @@ namespace Twitter_Projekt
                         PostManagment.EditPost();
                         break;
                     case 10:
+                        PostManagment.Like_Dislike();
+                        break;
+                    case 11:
                         runProgram = false;
                         Console.WriteLine("Programmet avslutas nu.");
                         Thread.Sleep(2000);

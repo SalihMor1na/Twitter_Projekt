@@ -9,7 +9,9 @@ namespace Twitter_Projekt
         public static List<string> listofposts = new List<string>();
         public static int repostChoice;
         public static List<string> repostList = new List<string>();
-
+        public static List<string> likeDislike = new List<string>();
+        public static int likeCount = 0;
+        public static int disLikeCount = 0;
 
         public static void CreatePost()
         {
@@ -44,6 +46,58 @@ namespace Twitter_Projekt
                     Console.ForegroundColor = ConsoleColor.White;
                     i++;
                 }
+            }
+        }
+
+        public static void Like_Dislike()
+        {
+                       
+            Console.WriteLine("Vilket inlägg vill du lika eller dislika");
+            ShowAllPost();
+
+            int choice = 0;
+            choice = int.Parse(Console.ReadLine())-1;
+            Console.WriteLine("Vill du lika eller dislika?");
+            string choiceLikeOrDislike = Console.ReadLine().ToLower();
+            if (choiceLikeOrDislike == "lika")
+            {
+                likeCount++;
+                Console.WriteLine($"Du har nu likat Inlägg [{listofposts[choice]}]");
+                likeDislike.Add(listofposts[choice] + " " + $"Likes [{likeCount}]");
+            }
+            else if(choiceLikeOrDislike == "dislika")
+            {
+                disLikeCount++;
+                Console.WriteLine($"Du har nu dislikat inlägg [{listofposts[choice]}] ");
+                likeDislike.Add(listofposts[choice] + " " + $"Dislikes [{disLikeCount}]");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Du måste skirva antigen lika eller dislika!");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+
+            Console.WriteLine("Vill du se alla inlägg och hur många likes/dislikes de har");
+            Console.WriteLine("Ja/Nej");
+            string choiceShowAllPosts = Console.ReadLine().ToLower();
+            int i = 1;
+            if (choiceShowAllPosts == "ja")
+            {
+                foreach (string post in likeDislike)
+                {
+                    Console.WriteLine($"{i}.{post}");
+                    i++;
+                }
+            }else if (choiceShowAllPosts == "nej")
+            {
+
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Du måste skriva ja eller nej");
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
         public static void DeleteTweet()

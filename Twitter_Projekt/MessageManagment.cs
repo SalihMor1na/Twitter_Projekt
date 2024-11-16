@@ -20,7 +20,9 @@ namespace Twitter_Projekt
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Användaren finns inte.");
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
 
