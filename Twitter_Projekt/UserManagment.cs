@@ -200,23 +200,52 @@ namespace Twitter_Projekt
 
         public static void Theme()
         {
+            int choiceTheme = 0;
             Console.WriteLine("Vill du sätta på mörkt läge eller vill du ha ljust");
             Console.WriteLine("1: Mörkt");
             Console.WriteLine("2: Ljust");
-            int choiceTheme = int.Parse(Console.ReadLine());
+
+            try { choiceTheme = int.Parse(Console.ReadLine()); }
+            catch 
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Det måste vara ett nummer");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            if (choiceTheme == 1 || choiceTheme == 2)
+            {
+                try { choiceTheme = int.Parse(Console.ReadLine()); }
+                catch 
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Det måste vara ett nummer");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+              
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Det måste vara ett av tillgängliga nummer");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            
+       
 
             if (choiceTheme == 1)
-            {
-                Console.WriteLine("Temat är nu mörkt!");
-                Console.BackgroundColor = ConsoleColor.Black;
+            { 
+                Console.BackgroundColor = ConsoleColor.Black;  
+                Console.Clear();
+                Console.WriteLine("Temat är nu mörkt!");                        
             }
             else if (choiceTheme == 2)
             {
-
-                Console.WriteLine("Temat är nu ljust!");
                 Console.BackgroundColor = ConsoleColor.Gray;
-
+                Console.Clear();
+                Console.WriteLine("Temat är nu ljust!");
+                
             }
+         
         }
 
     }

@@ -53,7 +53,7 @@ namespace Twitter_Projekt
                 else if (LoginManagment.loginChooise == 3)
                 {
                     UserManagment.Theme();
-                    Console.Clear();
+                   
                 }
                 else if (LoginManagment.loginChooise == 4)
                 {
