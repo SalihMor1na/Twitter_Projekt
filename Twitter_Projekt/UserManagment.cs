@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 
 namespace Twitter_Projekt
 {
@@ -82,7 +84,7 @@ namespace Twitter_Projekt
             UserManagment newUser = new UserManagment { Username = username, Password = password };
             Program.users.Add(newUser);
 
-            Program.SaveUsers();
+            SaveUsers();
             Console.WriteLine("Konto skapat!");
         }
 
@@ -124,5 +126,22 @@ namespace Twitter_Projekt
                 Console.WriteLine("Användaren finns inte.");
             }
         }
+
+        public static void SaveUsers()
+        {
+            string jsonString = JsonSerializer.Serialize(Program.users);
+            File.WriteAllText("users.json", jsonString);
+        }
+
+        public static List<UserManagment> LoadUsers()
+        {
+            if (File.Exists("users.json"))
+            {
+                string jsonString = File.ReadAllText("users.json");
+                return JsonSerializer.Deserialize<List<UserManagment>>(jsonString) ?? new List<UserManagment>();
+            }
+            return new List<UserManagment>();
+        }
+
     }
 }

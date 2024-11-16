@@ -15,7 +15,7 @@ namespace Twitter_Projekt
     class Program
     {
         public static List<string> listofposts = new List<string>();
-        public static List<UserManagment> users = LoadUsers();
+        public static List<UserManagment> users = UserManagment.LoadUsers();
         public static int loginChooise;
         public static int repostChoice;
         public static List<string> repostList = new List<string>();
@@ -25,7 +25,7 @@ namespace Twitter_Projekt
 
         public static void Main(string[] args)
         {
-            LoadUsers();
+            UserManagment.LoadUsers();
             HandleLoginMenu();
             HandleMenu();
         }
@@ -47,21 +47,7 @@ namespace Twitter_Projekt
             }
         }
 
-        public static void SaveUsers()
-        {
-            string jsonString = JsonSerializer.Serialize(users);
-            File.WriteAllText("users.json", jsonString);
-        }
-
-        static List<UserManagment> LoadUsers()
-        {
-            if (File.Exists("users.json"))
-            {
-                string jsonString = File.ReadAllText("users.json");
-                return JsonSerializer.Deserialize<List<UserManagment>>(jsonString) ?? new List<UserManagment>();
-            }
-            return new List<UserManagment>();
-        }
+       
         // Reklam dyker upp 5 sekunder
         public static async Task Ad()
         {
