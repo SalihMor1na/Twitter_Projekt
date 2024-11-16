@@ -417,7 +417,7 @@ namespace Twitter_Projekt
         public static void ShowAd()
         {
             Console.Clear();
-            Console.WriteLine("Du koller nu på en reklam, reklamen slutar om 5 sekunder...");
+            Console.WriteLine("Du kollar nu på en reklam, reklamen slutar om 5 sekunder...");
 
             Thread.Sleep(5000); 
             
@@ -427,6 +427,57 @@ namespace Twitter_Projekt
 
 
         }
+        // Alternativ 11 - Användarinställningar
+        public static void HandleSettings()
+        {
+            User currentUser = users.FirstOrDefault(u => u.Username == loggedInUsername);
+            if (currentUser == null)
+            {
+                Console.WriteLine("Något gick fel. Användaren kunde inte hittas");
+                return;
+            }
+
+            bool inSettings = true;
+
+            while (inSettings)
+            {
+                Console.Clear();
+                Console.WriteLine("INSTÄLLNINGAR");
+                Console.WriteLine("1. Ändra ditt användarnamn");
+                Console.WriteLine("2. Ändra ditt lösenord");
+                Console.WriteLine("3. Gå tillbaka till huvudmenyn");
+                Console.Write("Välj ett alternativ: ");
+
+                string choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "1":
+
+                        Console.Write("Ange ditt nya användarnamn: ");
+                        string newUsername = Console.ReadLine();
+
+                        if (users.Any(u => u.Username.Equals(newUsername, StringComparison.OrdinalIgnoreCase)))
+                        {
+                            Console.WriteLine("Det angivna användarnamnet är upptaget. Försök med ett annat användarnamn");
+                        }
+                        else
+                        {
+                            currentUser.Username = newUsername;
+                            loggedInUsername = newUsername;
+                            Console.WriteLine("Användarnamnet har ändrats!");
+                        }
+                        break;
+
+                }
+
+
+            }
+        }
+
+
+        
+
+
 
         public static void HandleLoginMenu()
         {
