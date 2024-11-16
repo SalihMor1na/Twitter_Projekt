@@ -30,23 +30,6 @@ namespace Twitter_Projekt
             HandleMenu();
         }
        
-        public static void SendDirectMessage()
-        {
-            Console.Write("Ange mottagarens användarnamn: ");
-            string recipient = Console.ReadLine();
-            UserManagment user = users.FirstOrDefault(u => u.Username == recipient);
-            if (user != null)
-            {
-                Console.Write("Skriv ditt meddelande: ");
-                string message = Console.ReadLine();
-                Console.WriteLine($"Meddelande skickat till {recipient}: {message}");
-            }
-            else
-            {
-                Console.WriteLine("Användaren finns inte.");
-            }
-        }
-
        
         // Reklam dyker upp 5 sekunder
         public static async Task Ad()
@@ -277,7 +260,7 @@ namespace Twitter_Projekt
                         UserManagment.ShowUserInfo();
                         break;
                     case 6:
-                        SendDirectMessage();
+                        MessageManagment.SendDirectMessage();
                         break;
                     case 8:
                         LoginManagment.Logout();
