@@ -76,7 +76,11 @@ namespace Twitter_Projekt
             int removePost = 0;
             try
             {
-                removePost = int.Parse(Console.ReadLine());
+                removePost = int.Parse(Console.ReadLine()) - 1;
+                if (removePost > listofposts.Count || removePost < 0)
+                {
+                    Console.WriteLine("Det inlägget finns ej! försök igen");
+                }
             }
             catch
             {
@@ -84,31 +88,9 @@ namespace Twitter_Projekt
                 Console.WriteLine("Det måste vara ett nummer!");
                 Console.ForegroundColor = ConsoleColor.White;
             }
-            bool run = true;
-            while (run)
-            {
-                if (removePost > listofposts.Count || removePost < listofposts.Count)
-                {
-                    Console.WriteLine("Det inlägget finns ej! försök igen");
-                    try
-                    {
-                        removePost = int.Parse(Console.ReadLine());
-                    }
-                    catch
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("Det måste vara ett nummer!");
-                        Console.ForegroundColor = ConsoleColor.White;
-                    }
-                }
-                else
-                {
-                    run = false;
-                }
-            }
 
-            listofposts.RemoveAt(removePost - 1);
-            Console.WriteLine($"Du tog bort inlägg nummer {removePost}");
+            listofposts.RemoveAt(removePost);
+            Console.WriteLine($"Du tog bort inlägg nummer {removePost + 1}");
         }
 
         // Alternativ 4 - Sök efter användare.
