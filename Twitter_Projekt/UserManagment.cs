@@ -198,6 +198,11 @@ namespace Twitter_Projekt
             }
         }
 
+        public static void Like_Dislike()
+        {
+
+        }
+
         public static void Theme()
         {
             int choiceTheme = 0;

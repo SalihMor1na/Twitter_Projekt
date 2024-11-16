@@ -75,7 +75,7 @@ namespace Twitter_Projekt
         {
             bool error = false;
             bool runProgram = true;
-            AdManagment.Ad();
+            //AdManagment.Ad();
 
 
             while (runProgram)

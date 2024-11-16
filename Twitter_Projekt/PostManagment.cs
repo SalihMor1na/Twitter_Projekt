@@ -116,9 +116,19 @@ namespace Twitter_Projekt
                 }
             }
 
+            
+
             var saveRepost = listofposts[repostChoice];
-            repostList.Add(saveRepost);
-            Console.WriteLine($"Du har nu repostat {listofposts[repostChoice]}");
+            if (!repostList.Contains(saveRepost))
+            {
+                repostList.Add(saveRepost);
+                Console.WriteLine($"Du har nu repostat {listofposts[repostChoice]}");
+            }
+            else
+            {
+                Console.WriteLine("Det här inlägget har redan repostats.");
+            }
+          
 
             Console.WriteLine("Vill du se alla dina repost svara med Ja/Nej");
             string showRepostChoice = Console.ReadLine().ToLower();
