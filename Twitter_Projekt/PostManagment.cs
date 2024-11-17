@@ -207,6 +207,11 @@ namespace Twitter_Projekt
         {
 
             Console.WriteLine("Vilket inlägg vill du lika eller dislika");
+            if (listOfPosts.Count == 0)
+            {
+                Console.WriteLine("\nDu har inga inlägg att visa!");
+                return;
+            }
             ShowAllPost();
             int choice = 0;
             choice = int.Parse(Console.ReadLine()) - 1;
