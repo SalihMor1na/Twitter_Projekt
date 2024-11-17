@@ -147,6 +147,38 @@ namespace Twitter_Projekt
             }
             return new List<UserManagment>();
         }
+
+        public static void ShowHelp()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("===============================================");
+            Console.WriteLine("         HJÄLP - ANVÄNDARINSTRUKTIONER         ");
+            Console.WriteLine("===============================================");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+
+            Console.WriteLine("1. Skapa ett inlägg: Skapa nya tweets och dela dina tankar.");
+            Console.WriteLine("2. Visa alla tweets: Se alla tweets som du eller andra har postat.");
+            Console.WriteLine("3. Ta bort tweet: Ta bort en tweet som du tidigare postat.");
+            Console.WriteLine("4. Sök efter följare: Sök och följ andra användare.");
+            Console.WriteLine("5. Retweeta: Dela andras tweets.");
+            Console.WriteLine("6. Skicka DM: Skicka direktmeddelanden till andra användare.");
+            Console.WriteLine("7. Visa mina följare: Se vilka som följer dig.");
+            Console.WriteLine("8. Logga ut: Logga ut från ditt konto.");
+            Console.WriteLine("9. Redigera inlägg: Ändra innehållet i dina tidigare tweets.");
+            Console.WriteLine("10. Lika/dislika inlägg: Gilla eller ogilla tweets.");
+            Console.WriteLine("11. Kontoinställningar: Ändra dina personliga inställningar.");
+            Console.WriteLine("12. Visa hjälp: Visa denna hjälpsida.");
+            Console.WriteLine("13. Avsluta programmet: Stänger programmet.");
+
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("===============================================");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Tryck på valfri tangent för att gå tillbaka.");
+            Console.ReadKey();
+        }
         public static void HandleSettings()
         {
             UserManagment currentUser = users.FirstOrDefault(u => u.Username == LoginManagment.loggedInUsername);
