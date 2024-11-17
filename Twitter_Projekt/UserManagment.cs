@@ -147,6 +147,12 @@ namespace Twitter_Projekt
             Console.Write("Ange användarnamnet på personen du vill följa: ");
             string userToFollow = Console.ReadLine();
 
+            if (userToFollow == LoginManagment.loggedInUsername)
+            {
+                Console.WriteLine("Du kan inte följa dig själv!");
+                return;
+            }
+
             UserManagment user = users.FirstOrDefault(u => u.Username.Equals(userToFollow, StringComparison.OrdinalIgnoreCase));
             if (user != null)
             {
