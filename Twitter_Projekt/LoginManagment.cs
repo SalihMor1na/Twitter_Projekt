@@ -28,8 +28,9 @@ namespace Twitter_Projekt
                     return true;
                 }
             }
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Fel användarnamn eller lösenord.");
+            Console.ForegroundColor = ConsoleColor.White;
             Thread.Sleep(2000);
             return false;
         }

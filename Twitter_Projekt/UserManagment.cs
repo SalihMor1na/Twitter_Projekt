@@ -55,7 +55,9 @@ namespace Twitter_Projekt
             string password = LoginManagment.ReadPassword();
             while (password.Length < 6 || !password.Any(char.IsDigit) || !password.Any(char.IsLetter))
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Lösenordet måste vara minst 6 tecken långt och innehålla både siffror och bokstäver, Försök igen!");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("Ange ett lösenord: ");
                 password = LoginManagment.ReadPassword();
             }
@@ -64,7 +66,9 @@ namespace Twitter_Projekt
             string email = Console.ReadLine();
             while (!IsValidEmail(email))
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Ogiltig e-postadress. Försök igen: ");
+                Console.ForegroundColor = ConsoleColor.White;
                 email = Console.ReadLine();
             }
 
@@ -74,7 +78,9 @@ namespace Twitter_Projekt
             string firstname = Console.ReadLine();
             while (string.IsNullOrEmpty(firstname))
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Förnamn får inte vara tomt. Ange ditt förnamn igen");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("Ange ditt förnamn: ");
                 firstname = Console.ReadLine();
             }
@@ -83,7 +89,9 @@ namespace Twitter_Projekt
             string lastname = Console.ReadLine();
             while (string.IsNullOrEmpty(lastname))
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Efternamn får inte vara tomt. Ange ditt förnamn igen");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("Ange ditt efternamn: ");
                 lastname = Console.ReadLine();
             }
@@ -93,7 +101,9 @@ namespace Twitter_Projekt
             string gender = "";
             while (genderInput != "1" && genderInput != "2" && genderInput != "3")
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Ogiltigt val. Välj 1 för Man, 2 för Kvinna eller 3 för annat");
+                Console.ForegroundColor = ConsoleColor.White;
                 genderInput = Console.ReadLine();
             }
             switch (genderInput)
