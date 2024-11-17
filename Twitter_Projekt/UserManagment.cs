@@ -117,8 +117,11 @@ namespace Twitter_Projekt
             users.Add(newUser);
 
             SaveUsers();
+
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Konto skapat!");
-            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.White;
+            Thread.Sleep(2000);
         }
         public static bool IsValidEmail(string email)
         {

@@ -189,7 +189,7 @@ namespace Twitter_Projekt
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("⚠️ Ogiltigt val! Försök igen.");
+                        Console.WriteLine("Ogiltigt val! Försök igen.");
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
                 }
