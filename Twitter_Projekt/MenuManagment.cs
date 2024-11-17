@@ -99,7 +99,9 @@ namespace Twitter_Projekt
             while (runProgram)
             {
                 PrintMenuHeader("Main Menu");
+
                 
+
                 PrintMenuOption(1, "Skapa ett inlägg");
                 PrintMenuOption(2, "Visa alla tweets");
                 PrintMenuOption(3, "Ta bort tweet");
@@ -115,6 +117,10 @@ namespace Twitter_Projekt
 
                 PrintSeparator();
                 PrintMenuOption(13, "Avsluta programmet", ConsoleColor.Red);
+                Console.WriteLine("=================================================");
+                string currentTime = DateTime.Now.ToString("HH:mm:ss");
+                Console.WriteLine($"Nuvarande tid: {currentTime}");
+                
 
                 Console.WriteLine();
 
