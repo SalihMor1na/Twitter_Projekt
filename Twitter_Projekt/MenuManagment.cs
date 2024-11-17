@@ -46,7 +46,7 @@ namespace Twitter_Projekt
 
                 try
                 {
-                    LoginManagment.loginChooise = int.Parse(Console.ReadLine());
+                    LoginManagment.loginChoice = int.Parse(Console.ReadLine());
                 }
                 catch
                 {
@@ -56,7 +56,7 @@ namespace Twitter_Projekt
                     continue;
                 }
 
-                switch (LoginManagment.loginChooise)
+                switch (LoginManagment.loginChoice)
                 {
                     case 1:
                         UserManagment.CreateAccount();

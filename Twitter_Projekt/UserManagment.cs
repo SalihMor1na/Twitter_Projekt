@@ -35,7 +35,7 @@ namespace Twitter_Projekt
                 {
                     Console.WriteLine("Lösenordet måste vara minst 6 tecken långt och innehålla både siffror och bokstäver, Försök igen!");
                     Console.Write("Ange ett lösenord: ");
-                    password = Console.ReadLine();
+                    password = LoginManagment.ReadPassword();
                 }
 
                 Console.WriteLine("Ange din e-postadress: ");
