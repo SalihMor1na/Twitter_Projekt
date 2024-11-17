@@ -115,7 +115,7 @@ namespace Twitter_Projekt
 
                 listofposts[postNumber - 1] = newPostText;
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Inlägget har uppdaterats.");
+                Console.WriteLine("Inlägget har uppdaterats");
                 Console.ForegroundColor = ConsoleColor.White;
             }
             else
