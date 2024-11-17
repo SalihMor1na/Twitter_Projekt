@@ -26,7 +26,7 @@ namespace Twitter_Projekt
                 {
                     Console.WriteLine("Användarnamnet är upptaget. Försök igen.");
                     Console.Write($"\nTryck på valfri tangetknapp för att forsätta .... ");
-                    Console.ReadLine();
+                    Console.ReadKey();
                     return;
                 }
             }
