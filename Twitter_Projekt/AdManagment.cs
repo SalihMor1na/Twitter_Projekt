@@ -22,6 +22,8 @@ namespace Twitter_Projekt
                 await Task.Delay(randomInterval);
 
                 ShowAd();
+
+                adShown = false;
             }
         }
         public static void ShowAd()
@@ -36,5 +38,11 @@ namespace Twitter_Projekt
             MenuManagment.HandleMenu();
         }
         Task adTask = Ad();
+
+        public static void StartAdTask()
+        {
+            Task.Run(() => Ad());
+        }
+
     }
 }

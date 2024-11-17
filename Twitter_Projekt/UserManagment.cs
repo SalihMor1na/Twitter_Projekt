@@ -194,6 +194,13 @@ namespace Twitter_Projekt
                         currentUser.Password = newPassword;
                         Console.WriteLine("Lösenordet har ändrats.");
                         break;
+
+                    case "3":
+                        inSettings = false;
+                        break;
+
+                    
+        
                 }
             }
         }
