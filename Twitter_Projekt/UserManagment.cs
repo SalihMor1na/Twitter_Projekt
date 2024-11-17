@@ -203,7 +203,6 @@ namespace Twitter_Projekt
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("===============================================");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Tryck på valfri tangent för att gå tillbaka.");
             Console.ReadKey();
         }
         public static void HandleSettings()
