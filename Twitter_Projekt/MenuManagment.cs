@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace Twitter_Projekt
 {
@@ -83,6 +85,8 @@ namespace Twitter_Projekt
                         Console.WriteLine("⚠️ Vänligen ange ett giltigt val!");
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
+
+                   
                 }
             }
         }
@@ -90,11 +94,11 @@ namespace Twitter_Projekt
         public static void HandleMenu()
         {
             bool runProgram = true;
-
+            
             while (runProgram)
             {
                 PrintMenuHeader("Main Menu");
-
+                
                 PrintMenuOption(1, "Skapa ett inlägg");
                 PrintMenuOption(2, "Visa alla tweets");
                 PrintMenuOption(3, "Ta bort tweet");
@@ -125,10 +129,13 @@ namespace Twitter_Projekt
                     continue;
                 }
 
+                
+
                 switch (choice)
                 {
                     case 1:
                         PostManagment.CreatePost();
+                        AdManagment.ShowAd();
                         break;
                     case 2:
                         PostManagment.ShowAllPost();

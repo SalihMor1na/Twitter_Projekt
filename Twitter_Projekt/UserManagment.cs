@@ -12,6 +12,8 @@ namespace Twitter_Projekt
     {
         public string Username { get; set; }
         public string Password { get; set; }
+
+        public bool NotificationsEnabled { get; set; }
         public List<string> Followers { get; set; } = new List<string>();
 
         public static List<UserManagment> users = LoadUsers();
@@ -155,14 +157,15 @@ namespace Twitter_Projekt
             }
 
             bool inSettings = true;
-
+            bool notificationsEnabled = currentUser.NotificationsEnabled;
             while (inSettings)
             {
                 Console.Clear();
                 Console.WriteLine("INSTÄLLNINGAR");
                 Console.WriteLine("1. Ändra ditt användarnamn");
                 Console.WriteLine("2. Ändra ditt lösenord");
-                Console.WriteLine("3. Gå tillbaka till huvudmenyn");
+                Console.WriteLine("3. Hantera notifikationer");
+                Console.WriteLine("4. Gå tillbaka till huvudmenyn");
                 Console.Write("Välj ett alternativ: ");
 
                 string choice = Console.ReadLine();
@@ -200,6 +203,32 @@ namespace Twitter_Projekt
                         break;
 
                     case "3":
+                        Console.WriteLine("Notifikationer: ");
+
+                        if (notificationsEnabled)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("ON");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("OFF");
+                        }
+                        Console.ResetColor();
+
+                        Console.WriteLine("\nÄndra notofokationsstatus");
+                        Console.WriteLine("1. Aktivera notifikationer");
+                        Console.WriteLine("2. Avaktivera notifikationer");
+                        Console.Write("Välj ett alternativ: ");
+                        string notificationsChoice = Console.ReadLine();
+                        break;
+
+
+
+
+
+                    case "4":
                         inSettings = false;
                         break;
 
