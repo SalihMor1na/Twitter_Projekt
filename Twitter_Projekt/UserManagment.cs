@@ -203,9 +203,15 @@ namespace Twitter_Projekt
                         inSettings = false;
                         break;
 
+                    default:
+                        Console.WriteLine("Ogiltigt val, försök igen.");
+                        break;
+
                     
         
                 }
+                SaveUsers();
+                Thread.Sleep(1000);
             }
         }
 

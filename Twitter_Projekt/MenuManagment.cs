@@ -105,9 +105,10 @@ namespace Twitter_Projekt
                 PrintMenuOption(8, "Logga ut");
                 PrintMenuOption(9, "Redigera inlägg");
                 PrintMenuOption(10, "Lika/dislika inlägg");
+                PrintMenuOption(11, "Kontoinställningar");
 
                 PrintSeparator();
-                PrintMenuOption(11, "Avsluta programmet", ConsoleColor.Red);
+                PrintMenuOption(12, "Avsluta programmet", ConsoleColor.Red);
 
                 Console.WriteLine();
 
@@ -166,6 +167,9 @@ namespace Twitter_Projekt
                         PostManagment.Like_Dislike();
                         break;
                     case 11:
+                        UserManagment.HandleSettings();
+                        break;
+                    case 12:
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Programmet avslutas nu.");
                         Thread.Sleep(2000);
