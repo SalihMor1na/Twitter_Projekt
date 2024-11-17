@@ -237,7 +237,7 @@ namespace Twitter_Projekt
                         }
                         else
                         {
-                            Console.WriteLine("Ogiltligt va, återgår till inställningsmenyn");
+                            Console.WriteLine("Ogiltligt val, återgår till inställningsmenyn");
                         }
                         break;
 

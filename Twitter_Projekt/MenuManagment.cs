@@ -105,11 +105,11 @@ namespace Twitter_Projekt
                 PrintMenuOption(4, "Sök efter följare");
                 PrintMenuOption(5, "Retweeta");
                 PrintMenuOption(6, "Skicka DM");
-                PrintMenuOption(7, "Visa mina följare");
-                PrintMenuOption(8, "Logga ut");
-                PrintMenuOption(9, "Redigera inlägg");
-                PrintMenuOption(10, "Lika/dislika inlägg");
-                PrintMenuOption(11, "Kontoinställningar");
+                PrintMenuOption(7, "Visa mina följare");               
+                PrintMenuOption(8, "Redigera inlägg");
+                PrintMenuOption(9, "Lika/dislika inlägg");
+                PrintMenuOption(10, "Kontoinställningar");
+                PrintMenuOption(11, "Logga ut");
 
                 PrintSeparator();
                 PrintMenuOption(12, "Avsluta programmet", ConsoleColor.Red);
@@ -165,17 +165,17 @@ namespace Twitter_Projekt
                         UserManagment.ShowUserInfo();
                         break;
                     case 8:
-                        LoginManagment.Logout();
-                        return;
-                    case 9:
                         PostManagment.EditPost();
                         break;
-                    case 10:
+                    case 9:
                         PostManagment.Like_Dislike();
                         break;
-                    case 11:
+                    case 10:
                         UserManagment.HandleSettings();
                         break;
+                    case 11:
+                        LoginManagment.Logout();
+                        return;
                     case 12:
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Programmet avslutas nu.");
