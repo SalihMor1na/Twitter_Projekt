@@ -229,6 +229,25 @@ namespace Twitter_Projekt
                         {
                             Console.WriteLine("Det angivna användarnamnet är upptaget. Försök med ett annat användarnamn");
                         }
+                        else if (string.IsNullOrWhiteSpace(newUsername))
+                        {
+                            bool isRunning = true;
+                            while (isRunning)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine("Det får inte vara tomt");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.WriteLine("Försök igen");
+                                newUsername = Console.ReadLine();
+                                if (!string.IsNullOrWhiteSpace(newUsername))
+                                {
+                                    Console.WriteLine("Användarnamnet har ändrats!");
+                                    isRunning = false;
+                                }
+
+                            }
+
+                        }
                         else
                         {
                             currentUser.Username = newUsername;
