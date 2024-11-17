@@ -28,8 +28,11 @@ namespace Twitter_Projekt
 
         public static List<UserManagment> users = LoadUsers();
 
+        public UserManagment()
+        {
+            ActivityLog = new List<string>();
+        }
 
-        
         public static void CreateAccount()
         {
 
