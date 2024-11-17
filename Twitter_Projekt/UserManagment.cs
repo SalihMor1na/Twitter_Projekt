@@ -31,6 +31,23 @@ namespace Twitter_Projekt
                     Console.Write($"\nTryck på valfri tangetknapp för att forsätta .... ");
                     Console.ReadKey();
                     return;
+                }else if (string.IsNullOrWhiteSpace(username))
+                {
+                    bool isRunning = true;
+                    while (isRunning)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Det får inte vara tomt");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("Försök igen");
+                        username = Console.ReadLine();
+                        if (!string.IsNullOrWhiteSpace(username))
+                        {
+                            isRunning = false;
+                        }
+
+                    }
+                    
                 }
             }
 
