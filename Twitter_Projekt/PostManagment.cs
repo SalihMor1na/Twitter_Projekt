@@ -191,52 +191,63 @@ namespace Twitter_Projekt
 
             Console.WriteLine("Vilket inlägg vill du lika eller dislika");
             ShowAllPost();
-
             int choice = 0;
             choice = int.Parse(Console.ReadLine()) - 1;
-            Console.WriteLine("Vill du lika eller dislika?");
-            string choiceLikeOrDislike = Console.ReadLine().ToLower();
-            if (choiceLikeOrDislike == "lika")
+            bool isRunning = true;
+            while (isRunning)
             {
-                likeCount++;
-                Console.WriteLine($"Du har nu likat Inlägg [{listofposts[choice]}]");
-                likeDislike.Add(listofposts[choice] + " " + $"Likes [{likeCount}]");
-            }
-            else if (choiceLikeOrDislike == "dislika")
-            {
-                disLikeCount++;
-                Console.WriteLine($"Du har nu dislikat inlägg [{listofposts[choice]}] ");
-                likeDislike.Add(listofposts[choice] + " " + $"Dislikes [{disLikeCount}]");
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Du måste skirva antigen lika eller dislika!");
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-
-            Console.WriteLine("Vill du se alla inlägg och hur många likes/dislikes de har");
-            Console.WriteLine("Ja/Nej");
-            string choiceShowAllPosts = Console.ReadLine().ToLower();
-            int i = 1;
-            if (choiceShowAllPosts == "ja")
-            {
-                foreach (string post in likeDislike)
+                Console.WriteLine("Vill du lika eller dislika?");
+                string choiceLikeOrDislike = Console.ReadLine().ToLower();
+                if (choiceLikeOrDislike == "lika")
                 {
-                    Console.WriteLine($"{i}.{post}");
-                    i++;
+                    likeCount++;
+                    Console.WriteLine($"Du har nu likat Inlägg [{listofposts[choice]}]");
+                    likeDislike.Add(listofposts[choice] + " " + $"Likes [{likeCount}]");
+                    isRunning = false;
+                }
+                else if (choiceLikeOrDislike == "dislika")
+                {
+                    disLikeCount++;
+                    Console.WriteLine($"Du har nu dislikat inlägg [{listofposts[choice]}] ");
+                    likeDislike.Add(listofposts[choice] + " " + $"Dislikes [{disLikeCount}]");
+                    isRunning = false;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Du måste skirva antigen lika eller dislika!");
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
-            else if (choiceShowAllPosts == "nej")
-            {
 
-            }
-            else
+            isRunning = true;
+            while (isRunning)
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Du måste skriva ja eller nej");
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Vill du se alla inlägg och hur många likes/dislikes de har");
+                Console.WriteLine("Ja/Nej");
+                string choiceShowAllPosts = Console.ReadLine().ToLower();
+                int i = 1;
+                if (choiceShowAllPosts == "ja")
+                {
+                    foreach (string post in likeDislike)
+                    {
+                        Console.WriteLine($"{i}.{post}");
+                        i++;
+                    }
+                    isRunning = false;
+                }
+                else if (choiceShowAllPosts == "nej")
+                {
+                    isRunning = false;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Du måste skriva ja eller nej");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
+          
         }
 
     }
