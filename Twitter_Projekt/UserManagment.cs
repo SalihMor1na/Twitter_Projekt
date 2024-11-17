@@ -12,7 +12,10 @@ namespace Twitter_Projekt
     {
         public string Username { get; set; }
         public string Password { get; set; }
-
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Subscription { get; set; }
         public bool NotificationsEnabled { get; set; }
         public List<string> Followers { get; set; } = new List<string>();
 
@@ -54,12 +57,12 @@ namespace Twitter_Projekt
 
 
             Console.WriteLine("Ange ditt förnamn: ");
-            string firstname = Console.ReadLine();
-            while (string.IsNullOrEmpty(firstname))
+            string FirstName = Console.ReadLine();
+            while (string.IsNullOrEmpty(FirstName))
             {
                 Console.WriteLine("Förnamn får inte vara tomt. Ange ditt förnamn igen");
                 Console.Write("Ange ditt förnamn: ");
-                firstname = Console.ReadLine();
+                FirstName = Console.ReadLine();
             }
 
             Console.WriteLine("Ange ditt efternamn: ");
@@ -162,16 +165,32 @@ namespace Twitter_Projekt
             {
                 Console.Clear();
                 Console.WriteLine("INSTÄLLNINGAR");
-                Console.WriteLine("1. Ändra ditt användarnamn");
-                Console.WriteLine("2. Ändra ditt lösenord");
-                Console.WriteLine("3. Hantera notifikationer");
-                Console.WriteLine("4. Gå tillbaka till huvudmenyn");
+                Console.WriteLine("1. Kontoinformation");
+                Console.WriteLine("2. Ändra ditt användarnamn");
+                Console.WriteLine("3. Ändra ditt lösenord");
+                Console.WriteLine("4. Hantera notifikationer");
+                Console.WriteLine("5. Gå tillbaka till huvudmenyn");
                 Console.Write("Välj ett alternativ: ");
 
                 string choice = Console.ReadLine();
                 switch (choice)
                 {
                     case "1":
+                        Console.Clear();
+                        Console.WriteLine("KONTOINFORMATION");
+                        Console.WriteLine($"Namn: {currentUser.FirstName}");
+                        Console.WriteLine($"Efternamn: {currentUser.LastName}");
+                        Console.WriteLine($"E-postadress: {currentUser.Email}");
+                        Console.WriteLine($"Prenumeration: {currentUser.Subscription}");
+                        Console.WriteLine("Tryck på valfri tangen för att återgå till menyn");
+                        Console.ReadKey();
+                        break;
+
+
+
+
+
+                    case "2":
 
                         Console.Write("Ange ditt nya användarnamn: ");
                         string newUsername = Console.ReadLine();
@@ -188,7 +207,7 @@ namespace Twitter_Projekt
                         }
                         break;
 
-                    case "2":
+                    case "3":
 
                         Console.Write("Ange ditt nya lösenord: ");
                         string newPassword = Console.ReadLine();
@@ -202,7 +221,7 @@ namespace Twitter_Projekt
                         Console.WriteLine("Lösenordet har ändrats.");
                         break;
 
-                    case "3":
+                    case "4":
                         Console.WriteLine("Notifikationer: ");
 
                         if (notificationsEnabled)
@@ -242,7 +261,7 @@ namespace Twitter_Projekt
                         break;
 
 
-                    case "4":
+                    case "5":
                         inSettings = false;
                         break;
 
