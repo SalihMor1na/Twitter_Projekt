@@ -306,6 +306,7 @@ namespace Twitter_Projekt
                         Console.WriteLine($"E-postadress: {currentUser.Email}");
                         Console.WriteLine($"Prenumeration: {currentUser.Subscription}");
                         Console.WriteLine("Tryck på valfri tangen för att återgå till menyn");
+                        currentUser.ActivityLog.Add($"Kontoinformation visades: {DateTime.Now}");
                         Console.ReadKey();
                         break;
 
@@ -343,7 +344,8 @@ namespace Twitter_Projekt
                             currentUser.Username = newUsername;
                             LoginManagment.loggedInUsername = newUsername;
                             Console.WriteLine("Användarnamnet har ändrats!");
-                           
+                            currentUser.ActivityLog.Add($"Användarnamn ändrades till {newUsername}: {DateTime.Now}");
+
                         }
                         break;
 
@@ -359,6 +361,7 @@ namespace Twitter_Projekt
                         }
                         currentUser.Password = newPassword;
                         Console.WriteLine("Lösenordet har ändrats.");
+                        currentUser.ActivityLog.Add("Lösenord ändrades: " + DateTime.Now);
                         break;
 
                     case "4":
@@ -387,12 +390,14 @@ namespace Twitter_Projekt
                             notificationsEnabled = true;
                             currentUser.NotificationsEnabled = true;
                             Console.WriteLine("Notifikationer är på");
+                            currentUser.ActivityLog.Add("Notifikationer aktiverades: " + DateTime.Now);
                         }
                         else if (notificationsChoice == "2")
                         {
                             notificationsEnabled = false;
                             currentUser.NotificationsEnabled = false;
                             Console.WriteLine("Notifikationer är av");
+                            currentUser.ActivityLog.Add("Notifikationer avaktiverades: " + DateTime.Now);
                         }
                         else
                         {
