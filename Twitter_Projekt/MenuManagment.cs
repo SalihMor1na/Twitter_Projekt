@@ -136,9 +136,6 @@ namespace Twitter_Projekt
                 {
                     case 1:
                         PostManagment.CreatePost();
-                        Console.ForegroundColor= ConsoleColor.Green;
-                        Console.WriteLine("Inlägg har skapats");
-                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     case 2:
                         PostManagment.ShowAllPost();

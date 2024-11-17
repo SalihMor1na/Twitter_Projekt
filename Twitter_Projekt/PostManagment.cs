@@ -17,7 +17,20 @@ namespace Twitter_Projekt
         {
             Console.WriteLine("Vad vill du dela med dig utav?");
             string post = Console.ReadLine();
-            listofposts.Add(post);
+            if (!string.IsNullOrEmpty(post))
+            {
+                listofposts.Add(post);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Inlägg har skapats");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Inlägget kan inte vara tomt");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+           
         }
 
         public static void ShowAllPost()
