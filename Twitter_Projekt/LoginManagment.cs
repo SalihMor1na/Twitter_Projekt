@@ -7,7 +7,7 @@ namespace Twitter_Projekt
 {
     internal class LoginManagment
     {
-        public static int loginChooise;
+        public static int loginChoice;
         public static string loggedInUsername;
 
 
