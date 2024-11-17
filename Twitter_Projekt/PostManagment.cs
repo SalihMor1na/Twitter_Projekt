@@ -68,6 +68,11 @@ namespace Twitter_Projekt
         public static void DeleteTweet()
         {
             Console.WriteLine("Skriv vilket inlägg du vill ta bort");
+            if (listofposts.Count == 0)
+            {
+                Console.WriteLine("\nDu har inga inlägg att visa!");
+                return;
+            }
             ShowAllPost();
             int removePost = 0;
             try
