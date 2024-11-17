@@ -18,8 +18,18 @@ namespace Twitter_Projekt
         public string Subscription { get; set; }
         public bool NotificationsEnabled { get; set; }
         public List<string> Followers { get; set; } = new List<string>();
+        public List<string> ActivityLog { get; set; }
+        public Dictionary<string, bool> NotificationPreferences { get; set; } = new Dictionary<string, bool>
+        {
+            {" Nya tweets", true },
+            {" Meddelanden", true },
+            {" Nya följare", true },
+        };
 
         public static List<UserManagment> users = LoadUsers();
+
+
+        
         public static void CreateAccount()
         {
 
@@ -73,19 +83,20 @@ namespace Twitter_Projekt
                 Console.WriteLine("Ogiltig e-postadress. Försök igen: ");
                 Console.ForegroundColor = ConsoleColor.White;
                 email = Console.ReadLine();
+                
             }
 
 
 
             Console.WriteLine("Ange ditt förnamn: ");
-            string FirstName = Console.ReadLine();
-            while (string.IsNullOrEmpty(FirstName))
+            string firstname = Console.ReadLine();
+            while (string.IsNullOrEmpty(firstname))
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Förnamn får inte vara tomt. Ange ditt förnamn igen");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("Ange ditt förnamn: ");
-                FirstName = Console.ReadLine();
+                firstname = Console.ReadLine();
             }
 
             Console.WriteLine("Ange ditt efternamn: ");
@@ -116,8 +127,15 @@ namespace Twitter_Projekt
                 case "3": gender = "Annat"; break;
             }
 
-            UserManagment newUser = new UserManagment { Username = username, Password = password };
-            users.Add(newUser);
+            UserManagment newUser = new UserManagment
+            {
+                Username = username,
+                Password = password,
+                Email = email,
+                FirstName = firstname,
+                LastName = lastname,              
+                NotificationsEnabled = true
+            };
 
             SaveUsers();
 
@@ -228,8 +246,14 @@ namespace Twitter_Projekt
                 return;
             }
 
+            if (currentUser.ActivityLog == null)
+            {
+                currentUser.ActivityLog = new List<string>();
+            }
+
             bool inSettings = true;
             bool notificationsEnabled = currentUser.NotificationsEnabled;
+
             while (inSettings)
             {
                 Console.Clear();
@@ -238,7 +262,8 @@ namespace Twitter_Projekt
                 Console.WriteLine("2. Ändra ditt användarnamn");
                 Console.WriteLine("3. Ändra ditt lösenord");
                 Console.WriteLine("4. Hantera notifikationer");
-                Console.WriteLine("5. Gå tillbaka till huvudmenyn");
+                Console.WriteLine("5. Visa aktivitetslogg");
+                Console.WriteLine("6. Gå tillbaka till huvudmenyn");
                 Console.Write("Välj ett alternativ: ");
 
                 string choice = Console.ReadLine();
@@ -254,9 +279,6 @@ namespace Twitter_Projekt
                         Console.WriteLine("Tryck på valfri tangen för att återgå till menyn");
                         Console.ReadKey();
                         break;
-
-
-
 
 
                     case "2":
@@ -292,6 +314,7 @@ namespace Twitter_Projekt
                             currentUser.Username = newUsername;
                             LoginManagment.loggedInUsername = newUsername;
                             Console.WriteLine("Användarnamnet har ändrats!");
+                           
                         }
                         break;
 
