@@ -53,8 +53,9 @@ namespace Twitter_Projekt
                 catch
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("⚠️ Det måste vara en siffra. Försök igen!");
+                    Console.WriteLine("Det måste vara en siffra. Försök igen!");
                     Console.ForegroundColor = ConsoleColor.White;
+                    Console.ReadKey();
                     continue;
                 }
 
@@ -82,7 +83,7 @@ namespace Twitter_Projekt
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("⚠️ Vänligen ange ett giltigt val!");
+                        Console.WriteLine("Vänligen ange ett giltigt val!");
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
 
