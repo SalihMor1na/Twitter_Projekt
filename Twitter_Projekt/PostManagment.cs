@@ -95,11 +95,28 @@ namespace Twitter_Projekt
         {
             Console.WriteLine("Ange numret på inlägget du vill redigera:");
             PostManagment.ShowAllPost();
+
             if (int.TryParse(Console.ReadLine(), out int postNumber) && postNumber > 0 && postNumber <= listofposts.Count)
             {
-                Console.Write("Skriv din nya text för inlägget: ");
-                listofposts[postNumber - 1] = Console.ReadLine();
+                string newPostText;
+
+                do
+                {
+                    Console.Write("Skriv din nya text för inlägget: ");
+                    newPostText = Console.ReadLine();
+
+                    if (string.IsNullOrWhiteSpace(newPostText))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Inlägget får inte vara tomt. Försök igen.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                } while (string.IsNullOrWhiteSpace(newPostText));
+
+                listofposts[postNumber - 1] = newPostText;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Inlägget har uppdaterats.");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else
             {
