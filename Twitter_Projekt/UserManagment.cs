@@ -208,24 +208,38 @@ namespace Twitter_Projekt
                         if (notificationsEnabled)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("ON");
+                            Console.WriteLine("PÅ");
                         }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("OFF");
+                            Console.WriteLine("AV");
                         }
                         Console.ResetColor();
 
-                        Console.WriteLine("\nÄndra notofokationsstatus");
+                        Console.WriteLine("Ändra notifikationsstatus");
                         Console.WriteLine("1. Aktivera notifikationer");
                         Console.WriteLine("2. Avaktivera notifikationer");
                         Console.Write("Välj ett alternativ: ");
                         string notificationsChoice = Console.ReadLine();
+                        
+                        if (notificationsChoice == "1")
+                        {
+                            notificationsEnabled = true;
+                            currentUser.NotificationsEnabled = true;
+                            Console.WriteLine("Notifikationer är på");
+                        }
+                        else if (notificationsChoice == "2")
+                        {
+                            notificationsEnabled = false;
+                            currentUser.NotificationsEnabled = false;
+                            Console.WriteLine("Notifikationer är av");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ogiltligt va, återgår till inställningsmenyn");
+                        }
                         break;
-
-
-
 
 
                     case "4":
