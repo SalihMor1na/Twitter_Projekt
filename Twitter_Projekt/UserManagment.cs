@@ -156,15 +156,9 @@ namespace Twitter_Projekt
                 case "3": gender = "Annat"; break;
             }
 
-            UserManagment newUser = new UserManagment
-            {
-                Username = username,
-                Password = password,
-                Email = email,
-                FirstName = firstname,
-                LastName = lastname,              
-                NotificationsEnabled = true
-            };
+            UserManagment newUser = new UserManagment { Username = username, Password = password, Email = email, FirstName = firstname, LastName = lastname, NotificationsEnabled = true };
+            users.Add(newUser);
+            
 
             SaveUsers();
 
