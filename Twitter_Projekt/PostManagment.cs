@@ -166,23 +166,35 @@ namespace Twitter_Projekt
             {
                 Console.WriteLine("Det här inlägget har redan repostats.");
             }
-          
 
-            Console.WriteLine("Vill du se alla dina repost svara med Ja/Nej");
-            string showRepostChoice = Console.ReadLine().ToLower();
-
-
-            if (showRepostChoice == "ja")
+            bool isRunning = true;
+            while (isRunning)
             {
-                foreach (var item in repostList)
+                Console.WriteLine("Vill du se alla dina repost svara med Ja/Nej");
+                string showRepostChoice = Console.ReadLine().ToLower();
+
+
+                if (showRepostChoice == "ja")
                 {
-                    Console.WriteLine(item);
+                    foreach (var item in repostList)
+                    {
+                        Console.WriteLine(item);
+                    }
+                    isRunning = false;
+                }else if (showRepostChoice == "nej")
+                {
+                    isRunning = false;
+                }
+                else if (repostList == null)
+                {
+                    Console.WriteLine("Finns inga repost");
+                }
+                else
+                {
+                    Console.WriteLine("Du måste skriva antingen ja eller nej");
                 }
             }
-            else if (repostList == null)
-            {
-                Console.WriteLine("Finns inga repost");
-            }
+          
 
         }
 
