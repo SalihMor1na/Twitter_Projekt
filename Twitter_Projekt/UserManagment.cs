@@ -409,17 +409,16 @@ namespace Twitter_Projekt
                         Console.Clear();
                         Console.WriteLine("AKTIVITETSLOGG: ");
                         Console.WriteLine("---------------------");
-                        if (currentUser.ActivityLog.Count > 0)
+                        var logsToShow = currentUser.ActivityLog.Take(5);
+                        foreach (var activity in logsToShow)
                         {
-                            foreach(string activity in currentUser.ActivityLog)
-                            {
-                                Console.WriteLine(activity);
-                            }
+                            Console.WriteLine(activity);
                         }
-                        else
+                        if (!logsToShow.Any());
                         {
-                            Console.WriteLine("Inga aktiviteter");
+                            Console.WriteLine("Inga aktiviter");
                         }
+
                         Console.WriteLine("Tryck på valfri tangent för att återgå till menyn");
                         Console.ReadKey();
                         break;
