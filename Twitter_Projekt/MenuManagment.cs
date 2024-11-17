@@ -125,8 +125,9 @@ namespace Twitter_Projekt
                 catch
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("⚠️ Det måste vara ett nummer! Försök igen.");
+                    Console.WriteLine("Det måste vara ett nummer! Försök igen.");
                     Console.ForegroundColor = ConsoleColor.White;
+                    Console.ReadKey();
                     continue;
                 }
 
