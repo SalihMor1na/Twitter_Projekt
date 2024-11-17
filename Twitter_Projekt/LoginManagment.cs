@@ -24,12 +24,15 @@ namespace Twitter_Projekt
                 if (user.Username == username && user.Password == password)
                 {
                     loggedInUsername = username;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Inloggning lyckades!");
+                    Console.ForegroundColor = ConsoleColor.White;
                     return true;
                 }
             }
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Fel användarnamn eller lösenord.");
+            Console.ForegroundColor = ConsoleColor.White;
             Thread.Sleep(2000);
             return false;
         }

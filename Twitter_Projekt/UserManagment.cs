@@ -34,6 +34,23 @@ namespace Twitter_Projekt
                     Console.Write($"\nTryck på valfri tangetknapp för att forsätta .... ");
                     Console.ReadKey();
                     return;
+                }else if (string.IsNullOrWhiteSpace(username))
+                {
+                    bool isRunning = true;
+                    while (isRunning)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Det får inte vara tomt");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("Försök igen");
+                        username = Console.ReadLine();
+                        if (!string.IsNullOrWhiteSpace(username))
+                        {
+                            isRunning = false;
+                        }
+
+                    }
+                    
                 }
             }
 
@@ -41,7 +58,9 @@ namespace Twitter_Projekt
             string password = LoginManagment.ReadPassword();
             while (password.Length < 6 || !password.Any(char.IsDigit) || !password.Any(char.IsLetter))
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Lösenordet måste vara minst 6 tecken långt och innehålla både siffror och bokstäver, Försök igen!");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("Ange ett lösenord: ");
                 password = LoginManagment.ReadPassword();
             }
@@ -50,7 +69,9 @@ namespace Twitter_Projekt
             string email = Console.ReadLine();
             while (!IsValidEmail(email))
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Ogiltig e-postadress. Försök igen: ");
+                Console.ForegroundColor = ConsoleColor.White;
                 email = Console.ReadLine();
             }
 
@@ -60,7 +81,9 @@ namespace Twitter_Projekt
             string FirstName = Console.ReadLine();
             while (string.IsNullOrEmpty(FirstName))
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Förnamn får inte vara tomt. Ange ditt förnamn igen");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("Ange ditt förnamn: ");
                 FirstName = Console.ReadLine();
             }
@@ -69,7 +92,9 @@ namespace Twitter_Projekt
             string lastname = Console.ReadLine();
             while (string.IsNullOrEmpty(lastname))
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Efternamn får inte vara tomt. Ange ditt förnamn igen");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("Ange ditt efternamn: ");
                 lastname = Console.ReadLine();
             }
@@ -79,7 +104,9 @@ namespace Twitter_Projekt
             string gender = "";
             while (genderInput != "1" && genderInput != "2" && genderInput != "3")
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Ogiltigt val. Välj 1 för Man, 2 för Kvinna eller 3 för annat");
+                Console.ForegroundColor = ConsoleColor.White;
                 genderInput = Console.ReadLine();
             }
             switch (genderInput)
@@ -93,8 +120,11 @@ namespace Twitter_Projekt
             users.Add(newUser);
 
             SaveUsers();
+
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Konto skapat!");
-            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.White;
+            Thread.Sleep(2000);
         }
         public static bool IsValidEmail(string email)
         {
@@ -123,6 +153,14 @@ namespace Twitter_Projekt
             Console.Write("Ange användarnamnet på personen du vill följa: ");
             string userToFollow = Console.ReadLine();
 
+            if (userToFollow == LoginManagment.loggedInUsername)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Du kan inte följa dig själv!");
+                Console.ForegroundColor = ConsoleColor.White;
+                return;
+            }
+
             UserManagment user = users.FirstOrDefault(u => u.Username.Equals(userToFollow, StringComparison.OrdinalIgnoreCase));
             if (user != null)
             {
@@ -149,6 +187,37 @@ namespace Twitter_Projekt
                 return JsonSerializer.Deserialize<List<UserManagment>>(jsonString) ?? new List<UserManagment>();
             }
             return new List<UserManagment>();
+        }
+
+        public static void ShowHelp()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("===============================================");
+            Console.WriteLine("         HJÄLP - ANVÄNDARINSTRUKTIONER         ");
+            Console.WriteLine("===============================================");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+
+            Console.WriteLine("1. Skapa ett inlägg: Skapa nya tweets och dela dina tankar.");
+            Console.WriteLine("2. Visa alla tweets: Se alla tweets som du eller andra har postat.");
+            Console.WriteLine("3. Ta bort tweet: Ta bort en tweet som du tidigare postat.");
+            Console.WriteLine("4. Sök efter följare: Sök och följ andra användare.");
+            Console.WriteLine("5. Retweeta: Dela andras tweets.");
+            Console.WriteLine("6. Skicka DM: Skicka direktmeddelanden till andra användare.");
+            Console.WriteLine("7. Visa mina följare: Se vilka som följer dig.");
+            Console.WriteLine("8. Logga ut: Logga ut från ditt konto.");
+            Console.WriteLine("9. Redigera inlägg: Ändra innehållet i dina tidigare tweets.");
+            Console.WriteLine("10. Lika/dislika inlägg: Gilla eller ogilla tweets.");
+            Console.WriteLine("11. Kontoinställningar: Ändra dina personliga inställningar.");
+            Console.WriteLine("12. Visa hjälp: Visa denna hjälpsida.");
+            Console.WriteLine("13. Avsluta programmet: Stänger programmet.");
+
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("===============================================");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadKey();
         }
         public static void HandleSettings()
         {
@@ -198,6 +267,25 @@ namespace Twitter_Projekt
                         if (users.Any(u => u.Username.Equals(newUsername, StringComparison.OrdinalIgnoreCase)))
                         {
                             Console.WriteLine("Det angivna användarnamnet är upptaget. Försök med ett annat användarnamn");
+                        }
+                        else if (string.IsNullOrWhiteSpace(newUsername))
+                        {
+                            bool isRunning = true;
+                            while (isRunning)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine("Det får inte vara tomt");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.WriteLine("Försök igen");
+                                newUsername = Console.ReadLine();
+                                if (!string.IsNullOrWhiteSpace(newUsername))
+                                {
+                                    Console.WriteLine("Användarnamnet har ändrats!");
+                                    isRunning = false;
+                                }
+
+                            }
+
                         }
                         else
                         {

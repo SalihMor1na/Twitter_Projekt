@@ -53,8 +53,9 @@ namespace Twitter_Projekt
                 catch
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("⚠️ Det måste vara en siffra. Försök igen!");
+                    Console.WriteLine("Det måste vara en siffra. Försök igen!");
                     Console.ForegroundColor = ConsoleColor.White;
+                    Console.ReadKey();
                     continue;
                 }
 
@@ -82,7 +83,7 @@ namespace Twitter_Projekt
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("⚠️ Vänligen ange ett giltigt val!");
+                        Console.WriteLine("Vänligen ange ett giltigt val!");
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
 
@@ -110,9 +111,10 @@ namespace Twitter_Projekt
                 PrintMenuOption(9, "Lika/dislika inlägg");
                 PrintMenuOption(10, "Kontoinställningar");
                 PrintMenuOption(11, "Logga ut");
+                PrintMenuOption(12, "Visa hjälp", ConsoleColor.Green);
 
                 PrintSeparator();
-                PrintMenuOption(12, "Avsluta programmet", ConsoleColor.Red);
+                PrintMenuOption(13, "Avsluta programmet", ConsoleColor.Red);
 
                 Console.WriteLine();
 
@@ -124,8 +126,9 @@ namespace Twitter_Projekt
                 catch
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("⚠️ Det måste vara ett nummer! Försök igen.");
+                    Console.WriteLine("Det måste vara ett nummer! Försök igen.");
                     Console.ForegroundColor = ConsoleColor.White;
+                    Console.ReadKey();
                     continue;
                 }
 
@@ -135,7 +138,6 @@ namespace Twitter_Projekt
                 {
                     case 1:
                         PostManagment.CreatePost();
-                        AdManagment.ShowAd();
                         break;
                     case 2:
                         PostManagment.ShowAllPost();
@@ -147,7 +149,7 @@ namespace Twitter_Projekt
                         UserManagment.SearchForUSer();
                         break;
                     case 5:
-                        if (PostManagment.listofposts.Count >= 1)
+                        if (PostManagment.listOfPosts.Count >= 1)
                         {
                             PostManagment.Reposta();
                         }
@@ -177,6 +179,9 @@ namespace Twitter_Projekt
                         LoginManagment.Logout();
                         return;
                     case 12:
+                        UserManagment.ShowHelp();
+                        break;
+                    case 13:
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Programmet avslutas nu.");
                         Thread.Sleep(2000);
@@ -184,7 +189,7 @@ namespace Twitter_Projekt
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("⚠️ Ogiltigt val! Försök igen.");
+                        Console.WriteLine("Ogiltigt val! Försök igen.");
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
                 }
