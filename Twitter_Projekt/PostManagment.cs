@@ -6,7 +6,7 @@ namespace Twitter_Projekt
 {
     internal class PostManagment
     {
-        public static List<string> listofposts = new List<string>();
+        public static List<string> listOfPosts = new List<string>();
         public static int repostChoice;
         public static List<string> repostList = new List<string>();
         public static List<string> likeDislike = new List<string>();
@@ -19,7 +19,7 @@ namespace Twitter_Projekt
             string post = Console.ReadLine();
             if (!string.IsNullOrEmpty(post))
             {
-                listofposts.Add(post);
+                listOfPosts.Add(post);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Inlägg har skapats");
                 Console.ForegroundColor = ConsoleColor.White;
@@ -37,7 +37,7 @@ namespace Twitter_Projekt
         {
             Console.WriteLine();
 
-            if (listofposts.Count == 0)
+            if (listOfPosts.Count == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Du har inga inlägg att visa!");
@@ -47,7 +47,7 @@ namespace Twitter_Projekt
             {
                 Console.WriteLine("Här kommer alla inlägg");
                 int i = 1;
-                foreach (string post in listofposts)
+                foreach (string post in listOfPosts)
                 {
                     int postLength = post.Length + 6;
                     Console.ForegroundColor = ConsoleColor.Cyan;
@@ -68,7 +68,7 @@ namespace Twitter_Projekt
         public static void DeleteTweet()
         {
             Console.WriteLine("Skriv vilket inlägg du vill ta bort");
-            if (listofposts.Count == 0)
+            if (listOfPosts.Count == 0)
             {
                 Console.WriteLine("\nDu har inga inlägg att visa!");
                 return;
@@ -78,7 +78,7 @@ namespace Twitter_Projekt
             try
             {
                 removePost = int.Parse(Console.ReadLine()) - 1;
-                if (removePost > listofposts.Count || removePost < 0)
+                if (removePost > listOfPosts.Count || removePost < 0)
                 {
                     Console.WriteLine("Det inlägget finns ej! försök igen");
                 }
@@ -90,7 +90,7 @@ namespace Twitter_Projekt
                 Console.ForegroundColor = ConsoleColor.White;
             }
 
-            listofposts.RemoveAt(removePost);
+            listOfPosts.RemoveAt(removePost);
             Console.ForegroundColor= ConsoleColor.Red;
             Console.WriteLine($"Du tog bort inlägg nummer {removePost + 1}");
             Console.ForegroundColor = ConsoleColor.White;
@@ -101,7 +101,7 @@ namespace Twitter_Projekt
             Console.WriteLine("Ange numret på inlägget du vill redigera:");
             PostManagment.ShowAllPost();
 
-            if (int.TryParse(Console.ReadLine(), out int postNumber) && postNumber > 0 && postNumber <= listofposts.Count)
+            if (int.TryParse(Console.ReadLine(), out int postNumber) && postNumber > 0 && postNumber <= listOfPosts.Count)
             {
                 string newPostText;
 
@@ -118,7 +118,7 @@ namespace Twitter_Projekt
                     }
                 } while (string.IsNullOrWhiteSpace(newPostText));
 
-                listofposts[postNumber - 1] = newPostText;
+                listOfPosts[postNumber - 1] = newPostText;
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Inlägget har uppdaterats");
                 Console.ForegroundColor = ConsoleColor.White;
@@ -153,7 +153,7 @@ namespace Twitter_Projekt
                     Console.ForegroundColor = ConsoleColor.White;
                 }
 
-                if (repostChoice >= 0 && repostChoice < listofposts.Count)
+                if (repostChoice >= 0 && repostChoice < listOfPosts.Count)
                 {
                     run = false;
                 }
@@ -161,11 +161,11 @@ namespace Twitter_Projekt
 
             
 
-            var saveRepost = listofposts[repostChoice];
+            var saveRepost = listOfPosts[repostChoice];
             if (!repostList.Contains(saveRepost))
             {
                 repostList.Add(saveRepost);
-                Console.WriteLine($"Du har nu repostat {listofposts[repostChoice]}");
+                Console.WriteLine($"Du har nu repostat {listOfPosts[repostChoice]}");
             }
             else
             {
@@ -218,15 +218,15 @@ namespace Twitter_Projekt
                 if (choiceLikeOrDislike == "lika")
                 {
                     likeCount++;
-                    Console.WriteLine($"Du har nu likat Inlägg [{listofposts[choice]}]");
-                    likeDislike.Add(listofposts[choice] + " " + $"Likes [{likeCount}]");
+                    Console.WriteLine($"Du har nu likat Inlägg [{listOfPosts[choice]}]");
+                    likeDislike.Add(listOfPosts[choice] + " " + $"Likes [{likeCount}]");
                     isRunning = false;
                 }
                 else if (choiceLikeOrDislike == "dislika")
                 {
                     disLikeCount++;
-                    Console.WriteLine($"Du har nu dislikat inlägg [{listofposts[choice]}] ");
-                    likeDislike.Add(listofposts[choice] + " " + $"Dislikes [{disLikeCount}]");
+                    Console.WriteLine($"Du har nu dislikat inlägg [{listOfPosts[choice]}] ");
+                    likeDislike.Add(listOfPosts[choice] + " " + $"Dislikes [{disLikeCount}]");
                     isRunning = false;
                 }
                 else

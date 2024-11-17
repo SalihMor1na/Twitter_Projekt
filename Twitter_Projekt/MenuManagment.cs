@@ -149,7 +149,7 @@ namespace Twitter_Projekt
                         UserManagment.SearchForUSer();
                         break;
                     case 5:
-                        if (PostManagment.listofposts.Count >= 1)
+                        if (PostManagment.listOfPosts.Count >= 1)
                         {
                             PostManagment.Reposta();
                         }

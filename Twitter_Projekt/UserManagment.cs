@@ -149,7 +149,9 @@ namespace Twitter_Projekt
 
             if (userToFollow == LoginManagment.loggedInUsername)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Du kan inte följa dig själv!");
+                Console.ForegroundColor = ConsoleColor.White;
                 return;
             }
 
