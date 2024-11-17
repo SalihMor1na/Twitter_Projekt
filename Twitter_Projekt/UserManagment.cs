@@ -33,6 +33,32 @@ namespace Twitter_Projekt
             ActivityLog = new List<string>();
         }
 
+        public void AddActivity(string activity)
+        {
+            ActivityLog.Add($"{DateTime.Now}: {activity}");
+            if (ActivityLog.Count > 10)
+            {
+                ActivityLog.RemoveAt(0); 
+            }
+        }
+
+        public void ShowActivityLog()
+        {
+            Console.WriteLine("Senaste aktiviteter:");
+            if (ActivityLog.Count == 0)
+            {
+                Console.WriteLine("Inga aktiviteter att visa.");
+            }
+            else
+            {
+                foreach (var activity in ActivityLog)
+                {
+                    Console.WriteLine(activity);
+                }
+            }
+        }
+
+
         public static void CreateAccount()
         {
 
@@ -374,8 +400,27 @@ namespace Twitter_Projekt
                         }
                         break;
 
-
                     case "5":
+                        Console.Clear();
+                        Console.WriteLine("AKTIVITETSLOGG: ");
+                        Console.WriteLine("---------------------");
+                        if (currentUser.ActivityLog.Count > 0)
+                        {
+                            foreach(string activity in currentUser.ActivityLog)
+                            {
+                                Console.WriteLine(activity);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Inga aktiviteter");
+                        }
+                        Console.WriteLine("Tryck på valfri tangent för att återgå till menyn");
+                        Console.ReadKey();
+                        break;
+
+
+                    case "6":
                         inSettings = false;
                         break;
 
