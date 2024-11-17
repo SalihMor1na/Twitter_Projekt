@@ -30,6 +30,7 @@ namespace Twitter_Projekt
             }
 
             Console.WriteLine("Fel användarnamn eller lösenord.");
+            Thread.Sleep(2000);
             return false;
         }
 
