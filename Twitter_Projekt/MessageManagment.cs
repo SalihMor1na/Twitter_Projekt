@@ -11,6 +11,12 @@ namespace Twitter_Projekt
         {
             Console.Write("Ange mottagarens användarnamn: ");
             string recipient = Console.ReadLine();
+            if (recipient == LoginManagment.loggedInUsername)
+            {
+                Console.WriteLine("Du kan inte skicka meddelanden till dig själv!");
+                return;
+            }
+            
             UserManagment user = UserManagment.users.FirstOrDefault(u => u.Username == recipient);
             if (user != null)
             {
