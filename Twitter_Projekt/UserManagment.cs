@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 
 namespace Twitter_Projekt
 {
@@ -88,6 +89,7 @@ namespace Twitter_Projekt
 
             SaveUsers();
             Console.WriteLine("Konto skapat!");
+            Thread.Sleep(1000);
         }
         public static bool IsValidEmail(string email)
         {
