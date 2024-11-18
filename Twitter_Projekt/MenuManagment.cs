@@ -38,10 +38,13 @@ namespace Twitter_Projekt
             Console.WriteLine("=================================================");
             Console.WriteLine("                     OM TWITTERC                     ");
             Console.WriteLine("=================================================");
+            Console.WriteLine();
             Console.WriteLine("Detta är ett Twitter liknande program utvecklad ");
             Console.WriteLine("för att hantera tweets, följare och meddelanden. ");
+            Console.WriteLine();
             Console.WriteLine("Skapad av: Salih, Ahmad och Petar");
             Console.WriteLine("Version: 1.0");
+            Console.WriteLine();
             Console.WriteLine("Tryck på valfri tangent för att återgå till menyn");
             Console.ReadKey();
                 
@@ -63,6 +66,7 @@ namespace Twitter_Projekt
                 PrintMenuOption(2, "Logga in");
                 PrintMenuOption(3, "Inställningar");
                 PrintMenuOption(4, "Avsluta Programmet", ConsoleColor.Red);
+                PrintMenuOption(5, "Om TwitterC");
                 
 
                 try
@@ -104,6 +108,9 @@ namespace Twitter_Projekt
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("Vänligen ange ett giltigt val!");
                         Console.ForegroundColor = ConsoleColor.White;
+                        break;
+                    case 5:
+                        ShowAboutUs();
                         break;
                   
                 }
