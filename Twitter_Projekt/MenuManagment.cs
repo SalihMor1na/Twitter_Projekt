@@ -118,6 +118,10 @@ namespace Twitter_Projekt
                 PrintSeparator();
                 PrintMenuOption(13, "Avsluta programmet", ConsoleColor.Red);
                 Console.WriteLine("=================================================");
+
+                Console.SetCursorPosition(Console.WindowWidth - 16, Console.CursorTop);
+                Console.WriteLine("www.twitterc.com");
+
                 Console.ForegroundColor = ConsoleColor.Blue;
                 string currentTime = DateTime.Now.ToString("HH:mm:ss");
                 Console.WriteLine($"Nuvarande tid: {currentTime}");
