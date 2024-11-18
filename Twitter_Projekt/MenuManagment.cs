@@ -91,7 +91,17 @@ namespace Twitter_Projekt
                 }
             }
         }
+        public class Program
+        {
+            public static void Main(string[] args)
+            {
+                Thread clockThread = new Thread(ShowCurrentTime);
+                clockThread.IsBackground = true;
+                clockThread.Start();
 
+                HandleMenu();
+            }
+        }
         public static void HandleMenu()
         {
             bool runProgram = true;
