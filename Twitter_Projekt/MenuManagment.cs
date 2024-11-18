@@ -35,6 +35,15 @@ namespace Twitter_Projekt
         private static void ShowAboutUs()
         {
             Console.Clear();
+
+            Console.WriteLine(@"
+  _______       _ _   _             _____ 
+ |__   __|     (_) | | |           / ____|
+    | |_      ___| |_| |_ ___ _ __| |     
+    | \ \ /\ / / | __| __/ _ \ '__| |     
+    | |\ V  V /| | |_| ||  __/ |  | |____ 
+    |_| \_/\_/ |_|\__|\__\___|_|   \_____");
+            Console.WriteLine();
             Console.WriteLine("=================================================");
             Console.WriteLine("                     OM TWITTERC                     ");
             Console.WriteLine("=================================================");
