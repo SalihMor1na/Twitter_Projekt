@@ -8,6 +8,7 @@ using System.Threading;
 
 namespace Twitter_Projekt
 {
+    // Kod för hantering av användare
     public class UserManagment
     {
         public string Username { get; set; }
@@ -309,7 +310,7 @@ namespace Twitter_Projekt
 
                         Console.Write("Ange ditt nya användarnamn: ");
                         string newUsername = Console.ReadLine();
-
+                        AdManagment.ShowAd();
                         if (users.Any(u => u.Username.Equals(newUsername, StringComparison.OrdinalIgnoreCase)))
                         {
                             Console.WriteLine("Det angivna användarnamnet är upptaget. Försök med ett annat användarnamn");

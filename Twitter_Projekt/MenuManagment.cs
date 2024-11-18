@@ -32,7 +32,7 @@ namespace Twitter_Projekt
         {
             Console.WriteLine("=================================================");
         }
-
+        // All kod för hantering av inloggningsmenyn
         public static void HandleLoginMenu()
         {
             bool isRunning = true;
@@ -86,11 +86,12 @@ namespace Twitter_Projekt
                         Console.WriteLine("Vänligen ange ett giltigt val!");
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
-
-                   
+                  
                 }
             }
         }
+
+        //Kod för huvudmenyn
         public static void HandleMenu()
         {
             bool runProgram = true;
@@ -118,11 +119,15 @@ namespace Twitter_Projekt
                 PrintMenuOption(13, "Avsluta programmet", ConsoleColor.Red);
                 Console.WriteLine("=================================================");
 
+                Console.ForegroundColor = ConsoleColor.Blue;
+                string currentTime = DateTime.Now.ToString("HH:mm:ss");
+                Console.WriteLine($"Nuvarande tid: {currentTime}");
+                Console.ResetColor();
+
                 Console.SetCursorPosition(Console.WindowWidth - 16, Console.CursorTop);
                 Console.WriteLine("www.twitterc.com");
 
-
-
+                
                 Console.WriteLine();
 
                 int choice = 0;
@@ -145,6 +150,7 @@ namespace Twitter_Projekt
                 {
                     case 1:
                         PostManagment.CreatePost();
+                        AdManagment.Ad();
                         break;
                     case 2:
                         PostManagment.ShowAllPost();
@@ -206,4 +212,6 @@ namespace Twitter_Projekt
             }
         }
     }
+
+
 }

@@ -6,6 +6,7 @@ using System.Threading;
 
 namespace Twitter_Projekt
 {
+    // Kod för reklam
     internal class AdManagment
     {
         public static bool adShown = false;

@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Twitter_Projekt
 {
+    //Kod för inlägg
     internal class PostManagment
     {
         public static List<string> listOfPosts = new List<string>();

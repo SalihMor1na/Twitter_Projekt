@@ -5,6 +5,7 @@ using System.Threading;
 
 namespace Twitter_Projekt
 {
+    // Kod för inloggning
     internal class LoginManagment
     {
         public static int loginChoice;

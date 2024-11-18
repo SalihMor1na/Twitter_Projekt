@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Twitter_Projekt
 {
+    //Kod för medellanden
     internal class MessageManagment
     {
         public static void SendDirectMessage()
