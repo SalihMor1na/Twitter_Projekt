@@ -18,7 +18,7 @@ namespace Twitter_Projekt
         {
             UserManagment.LoadUsers();
             MenuManagment.HandleLoginMenu();
-            AdManagment.StartAdTask();
+            //AdManagment.StartAdTask();
             MenuManagment.HandleMenu();
         }
     }

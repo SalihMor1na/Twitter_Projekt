@@ -32,6 +32,24 @@ namespace Twitter_Projekt
         {
             Console.WriteLine("=================================================");
         }
+        private static void ShowAboutUs()
+        {
+            Console.Clear();
+            Console.WriteLine("=================================================");
+            Console.WriteLine("                     OM TWITTERC                     ");
+            Console.WriteLine("=================================================");
+            Console.WriteLine("Detta är ett Twitter liknande program utvecklad ");
+            Console.WriteLine("för att hantera tweets, följare och meddelanden. ");
+            Console.WriteLine("Skapad av: Salih, Ahmad och Petar");
+            Console.WriteLine("Version: 1.0");
+            Console.WriteLine("Tryck på valfri tangent för att återgå till menyn");
+            Console.ReadKey();
+                
+
+        }
+
+
+
         // All kod för hantering av inloggningsmenyn
         public static void HandleLoginMenu()
         {
@@ -45,6 +63,7 @@ namespace Twitter_Projekt
                 PrintMenuOption(2, "Logga in");
                 PrintMenuOption(3, "Inställningar");
                 PrintMenuOption(4, "Avsluta Programmet", ConsoleColor.Red);
+                
 
                 try
                 {
@@ -149,8 +168,7 @@ namespace Twitter_Projekt
                 switch (choice)
                 {
                     case 1:
-                        PostManagment.CreatePost();
-                        AdManagment.Ad();
+                        PostManagment.CreatePost();                       
                         break;
                     case 2:
                         PostManagment.ShowAllPost();

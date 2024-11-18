@@ -309,8 +309,7 @@ namespace Twitter_Projekt
                     case "2":
 
                         Console.Write("Ange ditt nya användarnamn: ");
-                        string newUsername = Console.ReadLine();
-                        AdManagment.ShowAd();
+                        string newUsername = Console.ReadLine();                        
                         if (users.Any(u => u.Username.Equals(newUsername, StringComparison.OrdinalIgnoreCase)))
                         {
                             Console.WriteLine("Det angivna användarnamnet är upptaget. Försök med ett annat användarnamn");
