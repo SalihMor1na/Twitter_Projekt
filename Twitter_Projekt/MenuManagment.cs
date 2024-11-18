@@ -91,17 +91,6 @@ namespace Twitter_Projekt
                 }
             }
         }
-        public class Program
-        {
-            public static void Main(string[] args)
-            {
-                Thread clockThread = new Thread(ShowCurrentTime);
-                clockThread.IsBackground = true;
-                clockThread.Start();
-
-                HandleMenu();
-            }
-        }
         public static void HandleMenu()
         {
             bool runProgram = true;
@@ -132,10 +121,6 @@ namespace Twitter_Projekt
                 Console.SetCursorPosition(Console.WindowWidth - 16, Console.CursorTop);
                 Console.WriteLine("www.twitterc.com");
 
-                Console.ForegroundColor = ConsoleColor.Blue;
-                string currentTime = DateTime.Now.ToString("HH:mm:ss");
-                Console.WriteLine($"Nuvarande tid: {currentTime}");
-                
 
 
                 Console.WriteLine();
