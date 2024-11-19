@@ -184,21 +184,21 @@ namespace Twitter_Projekt
                 switch (choice)
                 {
                     case 1:
-                        PostManagment.CreatePost();                       
+                        PostService.CreatePost();                       
                         break;
                     case 2:
-                        PostManagment.ShowAllPost();
+                        PostDisplayService.ShowAllPost();
                         break;
                     case 3:
-                        PostManagment.DeleteTweet();
+                        PostService.DeleteTweet();
                         break;
                     case 4:
                         UserManagment.SearchForUSer();
                         break;
                     case 5:
-                        if (PostManagment.listOfPosts.Count >= 1)
+                        if (PostService.listOfPosts.Count >= 1)
                         {
-                            PostManagment.Reposta();
+                            InteractionService.Reposta();
                         }
                         else
                         {
@@ -214,10 +214,10 @@ namespace Twitter_Projekt
                         UserManagment.ShowUserInfo();
                         break;
                     case 8:
-                        PostManagment.EditPost();
+                        PostService.EditPost();
                         break;
                     case 9:
-                        PostManagment.Like_Dislike();
+                        InteractionService.Like_Dislike();
                         break;
                     case 10:
                         UserManagment.HandleSettings();
