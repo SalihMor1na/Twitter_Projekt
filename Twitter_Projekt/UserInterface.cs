@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace Twitter_Projekt
 {
     internal class UserInterface
@@ -22,8 +23,7 @@ namespace Twitter_Projekt
         public int GetUserChoice(string prompt)
         {
             Console.Write(prompt);
-
-            return 0;
+            return int.Parse(Console.ReadLine());
         }
     }
 }
